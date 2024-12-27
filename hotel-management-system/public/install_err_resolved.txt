@@ -1,0 +1,6 @@
+since the react is upadted to version 19 we need to uninstall to version 19 and install version 18 and made compatible with the 18 version 
+
+
+npm uninstall react react-dom
+npm install react@18 react-dom@18
+npm install --no-audit --save @testing-library/jest-dom@^5.14.1 @testing-library/react@^13.0.0 @testing-library/user-event@^13.2.1 web-vitals@^2.1.0
