@@ -24,11 +24,7 @@ const userSchema = mongoose.Schema(
       type: Number,
       required: true,
       enum: Object.values(Roles),
-    },
-
-    contact: {
-      type: Number,
-      required: true,
+      default: 1,
     },
   },
 

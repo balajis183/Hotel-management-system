@@ -6,8 +6,8 @@ const userModel = require("../models/userSchema");
 
 const createUser = async (req, res) => {
   try {
-    const { name, email, password, role, contact } = req.body;
-    const UserDoc = new userModel({ name, email, password, role, contact });
+    const { name, email, password, role } = req.body;
+    const UserDoc = new userModel({ name, email, password, role });
     await UserDoc.save();
 
     res.status(200).json({ message: "User created successfully" });

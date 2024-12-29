@@ -1,0 +1,35 @@
+Thunderclient to test
+
+// For Users root
+
+http://localhost:8000/users
+
+
+ POST - http://localhost:8000/users/register-user - register user 
+ 
+
+ GET -http://localhost:8000/users/get-all-users -get all users with basic information
+
+
+
+
+//For customers root
+
+http://localhost:8000/customers/   - index.js
+
+
+POST  - http://localhost:8000/customers/create-customer   - createCustomer
+
+
+GET  http://localhost:8000/customers/getcustomers    - getallcustomers
+ 
+
+GET   http://localhost:8000/customers/getcustomer/{obj_id of customer}
+
+GET   http://localhost:8000/customers/getcustomer/6770c7792f17cfc0f05b0c3b
+
+
+
+
+
+

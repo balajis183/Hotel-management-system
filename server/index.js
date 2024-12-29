@@ -7,6 +7,7 @@ const cors = require("cors");
 //import routes
 
 const userRoutes = require("./routes/userRoutes");
+const customerRoutes = require("./routes/customerRoutes");
 
 const connect = () => {
   try {
@@ -24,12 +25,13 @@ app.use(cors());
 app.use(bodyparser.json());
 
 app.get("/", (req, res) => {
-//   res.send("Server is working");
+  //   res.send("Server is working");
   res.send("Welcome to Hotel Management Syste and server is working  ");
 });
 
 //call user Routes
 app.use("/users", userRoutes);
+app.use("/customers", customerRoutes);
 
 const PORT = 8000;
 app.listen(PORT, () => {
