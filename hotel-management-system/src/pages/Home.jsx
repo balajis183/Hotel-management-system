@@ -5,7 +5,7 @@ function Home() {
   return (
     <div>
       <Layout>
-        <h1>Welcome to X Hotel</h1>
+        <h1>Welcome to StayHub</h1>
         <p>
           Experience luxury and comfort at X Hotel, where every detail is designed to provide you with an unforgettable stay. Located in the heart of the city, X Hotel offers world-class services, elegant rooms, and top-notch amenities. Whether you're visiting for business or leisure, our hotel ensures that your stay is both relaxing and productive.
         </p>

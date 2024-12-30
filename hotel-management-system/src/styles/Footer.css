@@ -1,0 +1,10 @@
+footer {
+  background-color: darkgreen;
+  margin: 0;
+  padding: 0;
+}
+
+.copy {
+  color: white;
+  font-weight: bold;
+}
