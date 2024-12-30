@@ -41,6 +41,11 @@ const roomSchema = new mongoose.Schema(
       required: true,
       min: [1, "Minimum occupancy is 1"], // Ensures at least one person can stay in the room
     },
+
+    Ratings: {
+      type: Number,
+      required: true,
+    },
   },
   { timestamps: true } // Automatically adds createdAt and updatedAt fields
 );
