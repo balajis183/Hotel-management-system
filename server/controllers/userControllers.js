@@ -6,10 +6,19 @@ const userModel = require("../models/userSchema");
 
 const createUser = async (req, res) => {
   try {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, confirmPassword, role } = req.body;
+
+    // Check if password and confirmPassword match
+    if (password !== confirmPassword) {
+      return res
+        .status(400)
+        .json({ message: "Passwords do not match and signup failed " });
+    }
+
+    console.log(req.body);
+
     const UserDoc = new userModel({ name, email, password, role });
     await UserDoc.save();
-
     res.status(200).json({ message: "User created successfully" });
   } catch (err) {
     console.log(err);

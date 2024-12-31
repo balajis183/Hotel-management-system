@@ -17,8 +17,13 @@ const userSchema = mongoose.Schema(
       unique: true,
       lowercase: true,
       match: [/^\S+@\S+\.\S+$/, "Please provide a valid email address"],
+      trim: true,
     },
-    password: { type: String, required: true, minlength: 6 },
+    password: {
+      type: String,
+      required: true,
+      minlength: [6, "Password must be at least 6 characters long."],
+    },
 
     role: {
       type: Number,
@@ -37,4 +42,4 @@ const userSchema = mongoose.Schema(
 
 const User = mongoose.model("User", userSchema);
 
-module.exports = User ;
+module.exports = User;

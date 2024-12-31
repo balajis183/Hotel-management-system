@@ -8,34 +8,60 @@ function Signup() {
   const [email, setEmail] = useState(" ");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  // const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("");
 
   function handleSubmit(event) {
+    event.preventDefault();
+
     const formObj = { name, email, password, confirmPassword };
     console.log(formObj);
 
-    if (formObj.password === formObj.confirmPassword) {
-      alert("Password matched");
-    } else {
-      alert("Password did not match");
+    setMessage("");
+
+    const validateEmail = (email) => {
+      const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      // return regex.test(email);
+      return regex.test(email.trim());
+    };
+
+    // Check for valid email format
+    if (!validateEmail(email)) {
+      setMessage("Invalid email format.");
+      return;
     }
+
+    if (password !== confirmPassword) {
+      setMessage("Passwords do not match.");
+      return;
+    }
+
+    if (password.length < 6) {
+      setMessage("Password must be at least 6 characters long.");
+      return;
+    }
+
+    // if (formObj.password === formObj.confirmPassword) {
+    //   alert("Password matched");
+    // } else {
+    //   alert("Password did not match");
+    // }
 
     axios
       .post("http://localhost:8000/users/register-user", formObj)
+
       .then((res) => {
         console.log(res);
         alert("User Signup Successful");
       })
-      .catch((err) => {
-        console.log("Error", err);
-        alert("Error in Signup please try again ");
-      });
-    event.preventDefault();
 
-    // if (password !== confirmPassword) {
-    //   setMessage("Passwords do not match.");
-    //   return;
-    // }
+      .catch((err) => {
+        if (err.response && err.response.data && err.response.data.message) {
+          alert(err.response.data.message); // Show server error message
+        } else {
+          console.log("Error", err);
+          alert("Error in Signup please try again ");
+        }
+      });
   }
 
   return (
@@ -110,6 +136,9 @@ function Signup() {
                 required
               />
             </div>
+
+            {/* Error message (if any) */}
+            {message && <div style={{ color: "red" }}>{message}</div>}
 
             {/* submit button  */}
 
