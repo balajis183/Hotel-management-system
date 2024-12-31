@@ -27,9 +27,3 @@ GET  http://localhost:8000/customers/getcustomers    - getallcustomers
 GET   http://localhost:8000/customers/getcustomer/{obj_id of customer}
 
 GET   http://localhost:8000/customers/getcustomer/6770c7792f17cfc0f05b0c3b
-
-
-
-
-
-

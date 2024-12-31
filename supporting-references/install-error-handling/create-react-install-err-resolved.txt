@@ -1,4 +1,5 @@
-since the react is upadted to version 19 we need to uninstall to version 19 and install version 18 and made compatible with the 18 version 
+//since the react is updated to version 19 we need to uninstall  version 19 
+ // install version 18 and made compatible with the 18 version 
 
 
 npm uninstall react react-dom
