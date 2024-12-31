@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 // import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 function Signup() {
   const [name, setName] = useState("");
@@ -138,16 +139,23 @@ function Signup() {
             </div>
 
             {/* Error message (if any) */}
-            {message && <div style={{ color: "red" }}>{message}</div>}
+
+            {message && (
+              <div className="alert alert-success bg-success mt-2 p-2">
+                {message}
+              </div>
+            )}
 
             {/* submit button  */}
 
-            <div className="form-group d-flex justify-content-center">
-              <input
-                type="submit"
-                className="btn btn-primary p-3 m-3 rounded-2"
-              />
-            </div>
+            <Link to={`/login`}>
+              <div className="form-group d-flex justify-content-center">
+                <input
+                  type="submit"
+                  className="btn btn-primary p-3 m-3 rounded-2"
+                />
+              </div>
+            </Link>
           </form>
         </div>
       </Layout>

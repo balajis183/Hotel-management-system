@@ -1,73 +1,86 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
-import "../styles/Login.css";
+import axios from "axios";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formObj = { email, password };
+    console.log(formObj);
 
-    // Temporary validation for testing
-    if (email === "" || password === "") {
-      setError("Both fields are required!");
-    } else {
-      setError("");
-      console.log("Email:", email);
-      console.log("Password:", password);
-    }
-  };
+    axios
+      .post("http://localhost:8000/users/login-user", formObj)
+
+      .then((res) => {
+        console.log(res);
+        alert("User login successfully");
+      })
+
+      .catch((err) => {
+        if (err.response && err.response.data && err.response.data.message) {
+          alert(err.response.data.message); // Show server error message
+        } else {
+          console.log("Error", err);
+          alert("Error in Signup please try again ");
+        }
+      });
+  }
 
   return (
-    <Layout>
-      <div
-        className="container  login-page"
-        style={{ margin: "0", padding: "0" }}
-      >
-        <h1>Login</h1>
-        <p>Please enter your email and password to log into your account.</p>
+    <div>
+      <Layout>
+        <div className="container border border-5 border-primary  rounded-5 ">
+          <h1 className="text-center display-4">Log in </h1>
+          <form onSubmit={handleSubmit}>
+            {/* Email  */}
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                type="text"
+                name="email"
+                id="email"
+                className="form-control"
+                placeholder="Enter your Email address"
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                }}
+                required
+              />
+            </div>
 
-        {error && <div className="alert alert-danger">{error}</div>}
+            {/* password  */}
 
-        <form onSubmit={handleSubmit} className="mt-3">
-          <div className="mb-3">
-            <label htmlFor="email" className="form-label">
-              Email
-            </label>
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
+            <div className="form-group mt-3">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                className="form-control"
+                placeholder="Enter your Login password"
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                }}
+                required
+              />
+            </div>
 
-          <div className="mb-3">
-            <label htmlFor="password" className="form-label">
-              Password
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              id="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-
-          <button type="submit" className="btn btn-primary">
-            Login
-          </button>
-        </form>
-      </div>
-    </Layout>
+            <div className="form-group d-flex justify-content-center mt-3">
+              <button
+                type="submit"
+                className="btn btn-primary p-3 m-3 rounded-2"
+              >
+                {" "}
+                Login{" "}
+              </button>
+            </div>
+          </form>
+        </div>
+      </Layout>
+    </div>
   );
 }
 
