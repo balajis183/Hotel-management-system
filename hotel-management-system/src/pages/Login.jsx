@@ -32,8 +32,8 @@ function Login() {
   return (
     <div>
       <Layout>
-        <div className="container border border-5 border-primary  rounded-5 ">
-          <h1 className="text-center display-4">Log in </h1>
+        <div className="container card shadow-lg  w-50 border border-5 border-success rounded-4">
+          <h1 className="text-center mb-3">Log in </h1>
           <form onSubmit={handleSubmit}>
             {/* Email  */}
             <div className="form-group">
@@ -68,13 +68,12 @@ function Login() {
               />
             </div>
 
-            <div className="form-group d-flex justify-content-center mt-3">
+            <div className="form-group d-flex justify-content-center mt-2">
               <button
                 type="submit"
-                className="btn btn-primary p-3 m-3 rounded-2"
+                className="btn btn-primary p-3 m-3 rounded-3"
               >
-                {" "}
-                Login{" "}
+                Login
               </button>
             </div>
           </form>

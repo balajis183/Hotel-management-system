@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
 // import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 function Signup() {
   const [name, setName] = useState("");
@@ -68,8 +67,8 @@ function Signup() {
   return (
     <div>
       <Layout>
-        <div className="container border border-5 border-primary  rounded-5 ">
-          <h1 className="text-center display-4">Sign Up</h1>
+        <div className="container border border-5 border-success rounded-4 card shadow-lg w-50  ">
+          <h1 className="text-center mb-3">Sign Up</h1>
           <form onSubmit={handleSubmit}>
             {/* Name  */}
             <div className="form-group">
@@ -80,6 +79,7 @@ function Signup() {
                 id="name"
                 className="form-control"
                 placeholder="Enter your name"
+                aria-label="Full Name"
                 onChange={(event) => {
                   setName(event.target.value);
                 }}
@@ -89,7 +89,7 @@ function Signup() {
 
             {/* Email  */}
 
-            <div className="form-group">
+            <div className="form-group mt-3">
               <label htmlFor="email">Email</label>
               <input
                 type="text"
@@ -106,7 +106,7 @@ function Signup() {
 
             {/* password  */}
 
-            <div className="form-group">
+            <div className="form-group mt-3">
               <label htmlFor="password"> Set Password</label>
               <input
                 type="password"
@@ -123,8 +123,8 @@ function Signup() {
 
             {/* confirmPassword */}
 
-            <div className="form-group">
-              <label htmlFor="confirmPassword">Confirm Password</label>
+            <div className="form-group mt-3">
+              <label htmlFor="confirmPassword"> Confirm Password</label>
               <input
                 type="password"
                 name="confirmPassword"
@@ -138,24 +138,22 @@ function Signup() {
               />
             </div>
 
-            {/* Error message (if any) */}
+            {/* Error message if email format not matched also password check */}
 
             {message && (
-              <div className="alert alert-success bg-success mt-2 p-2">
+              <div className="alert alert-success bg-success text-white mt-2 p-2 ">
                 {message}
               </div>
             )}
 
             {/* submit button  */}
 
-            <Link to={`/login`}>
-              <div className="form-group d-flex justify-content-center">
-                <input
-                  type="submit"
-                  className="btn btn-primary p-3 m-3 rounded-2"
-                />
-              </div>
-            </Link>
+            <div className="form-group d-flex justify-content-center ">
+              <input
+                type="submit"
+                className="btn btn-primary p-3 m-3  rounded-4 "
+              />
+            </div>
           </form>
         </div>
       </Layout>
