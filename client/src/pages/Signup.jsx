@@ -55,7 +55,13 @@ function Signup() {
       })
 
       .catch((err) => {
-        if (err.response && err.response.data && err.response.data.message) {
+        if (err.response.status === 409) {
+          setMessage("User already exists. Please try logging in."); // Specific error
+        } else if (
+          err.response &&
+          err.response.data &&
+          err.response.data.message
+        ) {
           alert(err.response.data.message); // Show server error message
         } else {
           console.log("Error", err);

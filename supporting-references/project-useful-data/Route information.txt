@@ -2,8 +2,8 @@ Thunderclient to test
 
 // For Users root
 
-http://localhost:8000/users
-
+    http://localhost:8000/users
+ 
 
  POST - http://localhost:8000/users/register-user - register user 
  

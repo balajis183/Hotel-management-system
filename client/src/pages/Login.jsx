@@ -5,6 +5,7 @@ import axios from "axios";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -21,10 +22,11 @@ function Login() {
 
       .catch((err) => {
         if (err.response && err.response.data && err.response.data.message) {
-          alert(err.response.data.message); // Show server error message
+          setMessage(err.response.data.message);
+          // Show server error message
         } else {
           console.log("Error", err);
-          alert("Error in Signup please try again ");
+          alert("Error in login. Please try again. ");
         }
       });
   }
@@ -50,9 +52,7 @@ function Login() {
                 required
               />
             </div>
-
             {/* password  */}
-
             <div className="form-group mt-3">
               <label htmlFor="password">Password</label>
               <input
@@ -67,6 +67,16 @@ function Login() {
                 required
               />
             </div>
+           
+           
+            {/* setMessage */}
+
+
+            {message && (
+              <div className="alert alert-success bg-success text-white mt-2 p-2 ">
+                {message}
+              </div>
+            )}
 
             <div className="form-group d-flex justify-content-center mt-2">
               <button

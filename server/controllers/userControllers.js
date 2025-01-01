@@ -15,6 +15,11 @@ const createUser = async (req, res) => {
         .json({ message: "Passwords do not match and signup failed " });
     }
 
+    const existingUser = await userModel.findOne({ email });
+    if (existingUser) {
+      return res.status(409).json({ message: "User already exists" }); // 409 Conflict
+    }
+
     console.log(req.body);
 
     const UserDoc = new userModel({ name, email, password, role });
