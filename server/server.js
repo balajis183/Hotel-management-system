@@ -8,6 +8,7 @@ const cors = require("cors");
 
 const userRoutes = require("./routes/userRoutes");
 const customerRoutes = require("./routes/customerRoutes");
+const roomRoutes = require("./routes/roomRoutes");
 
 const connect = () => {
   try {
@@ -32,6 +33,7 @@ app.get("/", (req, res) => {
 //call user Routes
 app.use("/users", userRoutes);
 app.use("/customers", customerRoutes);
+app.use("/rooms", roomRoutes);
 
 const PORT = 8000;
 app.listen(PORT, () => {

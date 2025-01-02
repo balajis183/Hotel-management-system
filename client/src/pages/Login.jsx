@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+
+  const navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -18,6 +21,7 @@ function Login() {
       .then((res) => {
         console.log(res);
         alert("User login successfully");
+        navigate("/home");
       })
 
       .catch((err) => {
@@ -67,10 +71,8 @@ function Login() {
                 required
               />
             </div>
-           
-           
-            {/* setMessage */}
 
+            {/* setMessage */}
 
             {message && (
               <div className="alert alert-success bg-success text-white mt-2 p-2 ">

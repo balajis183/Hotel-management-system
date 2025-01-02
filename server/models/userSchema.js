@@ -28,8 +28,8 @@ const userSchema = mongoose.Schema(
     role: {
       type: Number,
       required: true,
-      enum: Object.values(Roles),
-      default: 1,
+      enum: Object.values(Roles), // Ensures only valid roles
+      default: Roles.CUSTOMER, // Default role is CUSTOMER (1)
     },
   },
 

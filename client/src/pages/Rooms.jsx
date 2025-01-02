@@ -1,84 +1,189 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../components/Layout";
+import axios from "axios";
 
 function Rooms() {
-  // Static data for rooms
-  const rooms = [
-    {
-      room_number: 101,
-      type: "Single",
-      price: 3500,
-      status: "Available",
-      amenities: ["Wi-Fi", "AC", "TV", "Mini Bar"],
-      description: "A cozy single room with all modern amenities."
-    },
-    {
-      room_number: 102,
-      type: "Double",
-      price: 5000,
-      status: "Booked",
-      amenities: ["Wi-Fi", "AC", "TV", "Refrigerator"],
-      description: "Perfect for couples, featuring a comfortable bed and great amenities."
-    },
-    {
-      room_number: 103,
-      type: "Suite",
-      price: 12000,
-      status: "Available",
-      amenities: ["Wi-Fi", "AC", "TV", "Jacuzzi", "Mini Bar"],
-      description: "A luxurious suite with a Jacuzzi, perfect for a relaxing stay."
-    },
-    {
-      room_number: 104,
-      type: "Single",
-      price: 3500,
-      status: "Available",
-      amenities: ["Wi-Fi", "AC", "TV"],
-      description: "A basic room with all essential amenities for a comfortable stay."
-    },
-    {
-      room_number: 105,
-      type: "Double",
-      price: 5500,
-      status: "Maintenance",
-      amenities: ["Wi-Fi", "AC", "TV", "Refrigerator", "Balcony"],
-      description: "A spacious double room with a beautiful view from the balcony."
-    },
-    {
-      room_number: 106,
-      type: "Suite",
-      price: 15000,
-      status: "Available",
-      amenities: ["Wi-Fi", "AC", "TV", "Jacuzzi", "Living Room"],
-      description: "A premium suite with a living room and jacuzzi for ultimate relaxation."
-    }
-  ];
+  const [hotel_name, setHotel_name] = useState("");
+  const [room_number, setRoom_number] = useState("");
+  const [type, setType] = useState("");
+  const [price, setPrice] = useState("");
+  const [status, setStatus] = useState("");
+  const [image, setImage] = useState("");
+  const [amenities, setAmenities] = useState("");
+  const [max_occupancy, setMaxOccupancy] = useState("");
+  const [Ratings, setRatings] = useState("");
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const formObj = {
+      hotel_name,
+      room_number,
+      type,
+      price,
+      status,
+      image,
+      amenities,
+      max_occupancy,
+      Ratings,
+    };
+    console.log(formObj);
+
+    axios
+      .post("http://localhost:8000/rooms/create-room", formObj)
+      .then((res) => {
+        console.log(res);
+        alert("Room Added successfully");
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
+  }
 
   return (
     <div>
       <Layout>
-        <div className="container ">
-          <h1>Rooms Available</h1>
-          <p>Here are some of the rooms available at StayHub for booking:</p>
+        <div className=" card shadow-lg w-50 container border border-5 border-success rounded-4 ">
+          <h1 className="text-center mb-3">Create Room</h1>
 
-          <div className="row">
-            {rooms.map((room) => (
-              <div className="col-md-4 mb-4" key={room.room_number}>
-                <div className="card">
-                  <div className="card-body">
-                    <h5 className="card-title">Room {room.room_number}</h5>
-                    <p className="card-text">
-                      <strong>Type:</strong> {room.type} <br />
-                      <strong>Price:</strong> ₹{room.price} <br />
-                      <strong>Status:</strong> {room.status} <br />
-                      <strong>Amenities:</strong> {room.amenities.join(", ")} <br />
-                      <strong>Description:</strong> {room.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group p-1">
+              <label htmlFor="hotel_name">Hotel Name:</label>
+              <input
+                type="text"
+                name="hotel_name"
+                id="hotel_name"
+                className="form-control"
+                placeholder="Enter the Hotel Name"
+                required
+                onChange={(event) => setHotel_name(event.target.value)}
+              />
+            </div>
+
+            <div className="form-group p-1">
+              <label htmlFor="room_number">Room No:</label>
+              <input
+                type="text"
+                name="room_number"
+                id="room_number"
+                className="form-control"
+                placeholder="Enter the Room number of the hotel"
+                onChange={(event) => {
+                  setRoom_number(event.target.value);
+                }}
+                required
+              />
+            </div>
+
+            <div className="form-group p-1">
+              <label htmlFor="type">Room Type:</label>
+              <input
+                type="text"
+                name="type"
+                id="type"
+                className="form-control"
+                placeholder="Enter the room types "
+                required
+                onChange={(event) => {
+                  setType(event.target.value);
+                }}
+              />
+            </div>
+
+            <div className="form-group p-1">
+              <label htmlFor="price">Price of the room (Per Day):</label>
+              <input
+                type="Number"
+                name="price"
+                id="price"
+                className="form-control"
+                placeholder="Enter the Room Price"
+                onChange={(event) => {
+                  setPrice(event.target.value);
+                }}
+                required
+              />
+            </div>
+
+            <label htmlFor="status">Room Status:</label>
+            <select
+              name="status"
+              id="status"
+              className="form-control"
+              onChange={(event) => setStatus(event.target.value)}
+            >
+              <option value="" disabled selected>
+                Select the room status
+              </option>
+              <option value="1">Available</option>
+              <option value="2">Booked</option>
+              <option value="3">Maintenance</option>
+            </select>
+
+            <div className="form-group p-1">
+              <label htmlFor="amenities">Facilites</label>
+              <input
+                type="text"
+                name="amenities"
+                id="amenities"
+                className="form-control"
+                placeholder="Enter the facilites"
+                required
+                onChange={(event) => {
+                  setAmenities(event.target.value);
+                }}
+              />
+            </div>
+            <div className="form-group p-1">
+              <label htmlFor="max_occupancy">Max occupancy of the room :</label>
+              <input
+                type="Number"
+                name="max_occupancy"
+                id="max_occupancy"
+                className="form-control"
+                placeholder="Enter the max occupancy of the room "
+                required
+                onChange={(event) => {
+                  setMaxOccupancy(event.target.value);
+                }}
+              />
+            </div>
+
+            <div className="form-group p-1">
+              <label htmlFor="Ratings">Ratings:</label>
+              <input
+                type="Number"
+                name="Ratings"
+                id="Ratings"
+                className="form-control"
+                placeholder="Select the Ratings of the Room"
+                required
+                onChange={(event) => {
+                  setRatings(event.target.value);
+                }}
+              />
+            </div>
+
+            <div className="form-group  p-1">
+              <label htmlFor="image">Image</label>
+              <input
+                type="file"
+                accept="image/**"
+                name="image"
+                id="placeimage"
+                className="form-control"
+                onChange={(event) => {
+                  setImage(event.target.files[0]);
+                }}
+              />
+            </div>
+
+            <div className="form-group d-flex justify-content-center ">
+              <input
+                type="submit"
+                className="btn btn-primary p-3 m-3  rounded-4 "
+              />
+            </div>
+          </form>
         </div>
       </Layout>
     </div>

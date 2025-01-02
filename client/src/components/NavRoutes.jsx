@@ -11,7 +11,7 @@ function NavRoutes() {
     <div>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Signup/>} />
           <Route path="/home" element={<Home />} />
           <Route path="/rooms" element={<Rooms />} />
           <Route path="/about" element={<About />} />

@@ -1,32 +1,39 @@
 const mongoose = require("mongoose");
 
+const availability = {
+  Available: 1,
+  Booked: 2,
+  Maintenance: 3,
+};
+
 const roomSchema = new mongoose.Schema(
   {
     hotel_name: {
       type: String,
       required: true,
-      unique: true,
+      // unique: true,
     },
 
     room_number: {
       type: String,
       required: true,
-      unique: true, // Ensures room number is unique
+      // unique: true, // Ensures room number is unique
     },
     type: {
       type: String,
       required: true,
-      enum: ["Single", "Double", "Suite", "Penthouse"], // Room types
+      // enum: ["Single", "Double", "Suite", "Penthouse"], // Room types
     },
     price: {
       type: Number,
       required: true, // Price per night
     },
     status: {
-      type: String,
-      enum: ["Available", "Booked", "Maintenance"], // Room status
-      default: "Available",
+      type: Number, // Store numeric values
+      enum: Object.values(availability), // Restrict to [1, 2, 3]
+      default: availability.Available,  // Default to 1 (Available)
     },
+
     image: {
       type: String, // URL or Path to the image
       required: false, // Optional, only if you allow images

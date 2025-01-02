@@ -1,6 +1,7 @@
 // import user model
 
 const userModel = require("../models/userSchema");
+const bcrypt = require("bcrypt");
 
 // controller to insert user data into database
 
@@ -20,9 +21,18 @@ const createUser = async (req, res) => {
       return res.status(409).json({ message: "User already exists" }); // 409 Conflict
     }
 
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+    console.log("Hashed Password:", hashedPassword);
+
     console.log(req.body);
 
-    const UserDoc = new userModel({ name, email, password, role });
+    const UserDoc = new userModel({
+      name,
+      email,
+      password: hashedPassword,
+      role,
+    });
     await UserDoc.save();
     res.status(200).json({ message: "User created successfully" });
   } catch (err) {
@@ -51,8 +61,16 @@ const loginuser = async (req, res) => {
       return res.status(404).json({ message: "User not found." });
     }
 
-    // Compare the provided password with the stored password
-    if (user.password !== password) {
+    // // Compare the provided password with the stored password
+    // if (user.password !== password) {
+    //   return res.status(401).json({ message: "Invalid email or password." });
+    // }
+
+    console.log("Stored Password:", user.password);
+    console.log("Provided Password:", password);
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
       return res.status(401).json({ message: "Invalid email or password." });
     }
 

@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
 // import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
 function Signup() {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState(" ");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
+
+  // Initialize useNavigate hook
+  const navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -52,6 +57,9 @@ function Signup() {
       .then((res) => {
         console.log(res);
         alert("User Signup Successful");
+
+        // After successful signup, redirect to login page
+        navigate("/login"); // Redirect to login page
       })
 
       .catch((err) => {
