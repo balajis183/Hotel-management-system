@@ -1,13 +1,14 @@
 // import user model
 
 const userModel = require("../models/userSchema");
+const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 // controller to insert user data into database
 
 const createUser = async (req, res) => {
   try {
-    const { name, email, password, confirmPassword, role } = req.body;
+    const { name, email, password, confirmPassword } = req.body;
 
     // Check if password and confirmPassword match
     if (password !== confirmPassword) {
@@ -19,6 +20,19 @@ const createUser = async (req, res) => {
     const existingUser = await userModel.findOne({ email });
     if (existingUser) {
       return res.status(409).json({ message: "User already exists" }); // 409 Conflict
+    }
+
+    const Roles = {
+      CUSTOMER: 1,
+      STAFF: 2,
+    };
+
+    // const {Roles} = require("../models/userSchema");
+
+    let role = Roles.CUSTOMER; // Default role is CUSTOMER
+    const domain = email.split("@")[1]; // Extract domain from email
+    if (domain === "stayhub.com") {
+      role = Roles.STAFF; // Assign STAFF role if email is from stayhub.com
     }
 
     // Hash the password
@@ -41,16 +55,6 @@ const createUser = async (req, res) => {
   }
 };
 
-const getAllusers = async (req, res) => {
-  try {
-    const users = await userModel.find();
-    res.status(200).json(users);
-  } catch (error) {
-    console.log(error);
-    res.status(500).json("Server not functioning or unable to fetch users");
-  }
-};
-
 const loginuser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -61,7 +65,6 @@ const loginuser = async (req, res) => {
       return res.status(404).json({ message: "User not found." });
     }
 
-    // // Compare the provided password with the stored password
     // if (user.password !== password) {
     //   return res.status(401).json({ message: "Invalid email or password." });
     // }
@@ -69,18 +72,31 @@ const loginuser = async (req, res) => {
     console.log("Stored Password:", user.password);
     console.log("Provided Password:", password);
 
+    // // Compare the provided password with the stored hashed password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(401).json({ message: "Invalid email or password." });
     }
 
+    // Generate a JWT token
+
+    const token = jwt.sign(
+      { id: user._id, role: user.role }, // Payload containing user ID and role
+      process.env.JWT_SECRET, // Secret key (set in .env file)
+      { expiresIn: "1h" } // Token validity (1 hour)
+    );
+
+    console.log("Generated JWT Token: ", token);
+
     // Successful login
     res.status(200).json({
       message: "Login successful.",
+      token,
       user: {
         id: user._id,
         name: user.name,
         email: user.email,
+        role: user.role,
       },
     });
   } catch (error) {
@@ -89,4 +105,14 @@ const loginuser = async (req, res) => {
   }
 };
 
-module.exports = { createUser, getAllusers, loginuser };
+const getAllusers = async (req, res) => {
+  try {
+    const users = await userModel.find();
+    res.status(200).json(users);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json("Server not functioning or unable to fetch users");
+  }
+};
+
+module.exports = { createUser, loginuser, getAllusers };

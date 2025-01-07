@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -20,8 +20,15 @@ function Login() {
 
       .then((res) => {
         console.log(res);
-        alert("User login successfully");
-        navigate("/home");
+
+        const token = res.data.token; // Capture the token from the response data
+        console.log("Token received:", token); // Check if the token is returned from the backend
+
+        if (token) {
+          localStorage.setItem("token", token); // Store the token in the browser's localStorage
+          alert("User login successfully");
+          navigate("/customer");
+        }
       })
 
       .catch((err) => {
@@ -75,10 +82,21 @@ function Login() {
             {/* setMessage */}
 
             {message && (
-              <div className="alert alert-success bg-success text-white mt-2 p-2 ">
+              <div className="alert alert-success bg-success text-white mt-3 p-2 ">
                 {message}
               </div>
             )}
+
+            {/* Registration link for new users */}
+            <div className="text-center mt-3">
+              <p className="text-success">
+                Not registered yet?{" "}
+                <Link to={`/signup`} className="text-primary">
+                  Create an account here
+                </Link>
+                .
+              </p>
+            </div>
 
             <div className="form-group d-flex justify-content-center mt-2">
               <button

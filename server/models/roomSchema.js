@@ -1,11 +1,5 @@
 const mongoose = require("mongoose");
 
-const availability = {
-  Available: 1,
-  Booked: 2,
-  Maintenance: 3,
-};
-
 const roomSchema = new mongoose.Schema(
   {
     hotel_name: {
@@ -19,34 +13,31 @@ const roomSchema = new mongoose.Schema(
       required: true,
       // unique: true, // Ensures room number is unique
     },
-    type: {
+
+    address: {
       type: String,
       required: true,
-      // enum: ["Single", "Double", "Suite", "Penthouse"], // Room types
+    },
+
+    room_type: {
+      type: String,
+      required: true,
+      enum: ["Single", "Double", "Deluxe", "Villa", "Bungalow", "Penthouse"], // Room types
     },
     price: {
       type: Number,
       required: true, // Price per night
     },
+
     status: {
-      type: Number, // Store numeric values
-      enum: Object.values(availability), // Restrict to [1, 2, 3]
-      default: availability.Available,  // Default to 1 (Available)
+      type: String, // Store string values
+      enum: ["Available", "Booked", "Maintenance"], // Restrict to specific status values
+      default: "Available", // Default to "Available"
     },
 
     image: {
       type: String, // URL or Path to the image
       required: false, // Optional, only if you allow images
-    },
-    amenities: [String], // e.g., Wi-Fi, AC, TV, etc.
-    description: {
-      type: String,
-      required: false, // Optional description of the room
-    },
-    max_occupancy: {
-      type: Number,
-      required: true,
-      min: [1, "Minimum occupancy is 1"], // Ensures at least one person can stay in the room
     },
 
     Ratings: {

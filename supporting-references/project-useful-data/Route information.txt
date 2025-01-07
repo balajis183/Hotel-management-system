@@ -6,6 +6,8 @@ Thunderclient to test
  
 
  POST - http://localhost:8000/users/register-user - register user 
+
+ POST - http://localhost:8000/users/login-user - login user
  
 
  GET -http://localhost:8000/users/get-all-users -get all users with basic information
@@ -13,9 +15,11 @@ Thunderclient to test
 
 
 
+
+
 //For customers root
 
-http://localhost:8000/customers/   - index.js
+http://localhost:8000/customers/   - server.js
 
 
 POST  - http://localhost:8000/customers/create-customer   - createCustomer
@@ -27,3 +31,18 @@ GET  http://localhost:8000/customers/getcustomers    - getallcustomers
 GET   http://localhost:8000/customers/getcustomer/{obj_id of customer}
 
 GET   http://localhost:8000/customers/getcustomer/6770c7792f17cfc0f05b0c3b
+
+
+
+// For Rooms root
+
+app.use("/rooms", roomRoutes);
+
+i.e 
+
+http://localhost:8000/rooms 
+
+
+Post   http://localhost:8000/rooms/create-room  - createRoom
+
+GET    http://localhost:8000/rooms/get-all-rooms  - get all rooms

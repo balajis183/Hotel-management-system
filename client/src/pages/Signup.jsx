@@ -45,12 +45,6 @@ function Signup() {
       return;
     }
 
-    // if (formObj.password === formObj.confirmPassword) {
-    //   alert("Password matched");
-    // } else {
-    //   alert("Password did not match");
-    // }
-
     axios
       .post("http://localhost:8000/users/register-user", formObj)
 
@@ -100,9 +94,7 @@ function Signup() {
                 required
               />
             </div>
-
             {/* Email  */}
-
             <div className="form-group mt-3">
               <label htmlFor="email">Email</label>
               <input
@@ -117,9 +109,7 @@ function Signup() {
                 required
               />
             </div>
-
             {/* password  */}
-
             <div className="form-group mt-3">
               <label htmlFor="password"> Set Password</label>
               <input
@@ -134,9 +124,7 @@ function Signup() {
                 required
               />
             </div>
-
             {/* confirmPassword */}
-
             <div className="form-group mt-3">
               <label htmlFor="confirmPassword"> Confirm Password</label>
               <input
@@ -151,9 +139,7 @@ function Signup() {
                 required
               />
             </div>
-
             {/* Error message if email format not matched also password check */}
-
             {message && (
               <div className="alert alert-success bg-success text-white mt-2 p-2 ">
                 {message}
@@ -161,7 +147,6 @@ function Signup() {
             )}
 
             {/* submit button  */}
-
             <div className="form-group d-flex justify-content-center ">
               <input
                 type="submit"

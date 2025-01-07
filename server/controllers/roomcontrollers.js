@@ -5,16 +5,16 @@ const createRoom = async (req, res) => {
   try {
     const {
       hotel_name,
+      address,
       room_number,
-      type,
+      room_type,
       price,
       status,
       image,
-      amenities,
-      description,
-      max_occupancy,
       Ratings,
     } = req.body;
+
+    console.log(req.body);
 
     // Check if the room number already exists in the hotel
     const existingRoom = await Room.findOne({ hotel_name, room_number });
@@ -26,14 +26,12 @@ const createRoom = async (req, res) => {
 
     const newRoom = new Room({
       hotel_name,
+      address,
       room_number,
-      type,
+      room_type,
       price,
       status,
       image,
-      amenities,
-      description,
-      max_occupancy,
       Ratings,
     });
 
@@ -55,12 +53,15 @@ const createRoom = async (req, res) => {
 const getAllRooms = async (req, res) => {
   try {
     const rooms = await Room.find();
+    console.log(rooms);
 
     if (rooms.length === 0) {
       return res.status(404).json({ message: "No rooms found" });
     }
 
-    res.status(200).json({ message: "Rooms fetched successfully", rooms });
+    res
+      .status(200)
+      .json({ rooms: rooms, message: "Rooms fetched successfully"});
   } catch (error) {
     console.error(error);
     res

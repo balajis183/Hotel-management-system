@@ -1,3 +1,10 @@
+// Load environment variables from .env file
+require("dotenv").config();
+
+// const secretKey = process.env.JWT_SECRET;
+// console.log(secretKey); 
+
+
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");

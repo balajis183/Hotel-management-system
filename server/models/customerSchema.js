@@ -9,8 +9,18 @@ const customerSchema = mongoose.Schema(
       required: true,
     },
 
+    gender: {
+      type: String,
+      enum: ["Male", "Female", "Other"],
+      required: true,
+    },
+
     contact: {
       type: Number,
+      required: true,
+    },
+    dob: {
+      type: Date,
       required: true,
     },
 
@@ -18,9 +28,11 @@ const customerSchema = mongoose.Schema(
       type: String,
       required: true,
     },
-    dob: {
-      type: Date,
-      required: true,
+
+    nationality: {
+      type: String,
+      default: "Indian", // Default nationality set to "Indian"
+      // required: true,
     },
 
     status: {

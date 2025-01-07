@@ -1,12 +1,25 @@
 const express = require("express");
 
 // require controllers
-
 const router = express.Router();
 
-const { createUser, getAllusers, loginuser } = require("../controllers/userControllers");
+//import jwt token
 
-//create user route
+const authenticateToken = require("../middlewares/userMiddleware");
+// const authorizeRole = require("../middlewares/userMiddleware");
+
+const Roles = {
+  CUSTOMER: 1,
+  STAFF: 2,
+};
+
+const {
+  createUser,
+  getAllusers,
+  loginuser,
+} = require("../controllers/userControllers");
+
+//create user router
 router.post("/register-user", createUser);
 
 //create login route

@@ -2,28 +2,26 @@ import React, { useState } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
 
-function Rooms() {
+function CreateRoom() {
   const [hotel_name, setHotel_name] = useState("");
+  const [address, setAddress] = useState("");
   const [room_number, setRoom_number] = useState("");
-  const [type, setType] = useState("");
+  const [room_type, setRoomType] = useState("");
   const [price, setPrice] = useState("");
   const [status, setStatus] = useState("");
   const [image, setImage] = useState("");
-  const [amenities, setAmenities] = useState("");
-  const [max_occupancy, setMaxOccupancy] = useState("");
   const [Ratings, setRatings] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
     const formObj = {
       hotel_name,
+      address,
       room_number,
-      type,
+      room_type,
       price,
       status,
       image,
-      amenities,
-      max_occupancy,
       Ratings,
     };
     console.log(formObj);
@@ -47,6 +45,8 @@ function Rooms() {
 
           <form onSubmit={handleSubmit}>
             <div className="form-group p-1">
+              {/* Hotel name  */}
+
               <label htmlFor="hotel_name">Hotel Name:</label>
               <input
                 type="text"
@@ -58,6 +58,22 @@ function Rooms() {
                 onChange={(event) => setHotel_name(event.target.value)}
               />
             </div>
+
+            {/* address  */}
+            <div className="form-group p-1">
+              <label htmlFor="address">Address:</label>
+              <input
+                type="text"
+                name="address"
+                id="address"
+                className="form-control"
+                placeholder="Enter the Hotel Name"
+                required
+                onChange={(event) => setAddress(event.target.value)}
+              />
+            </div>
+
+            {/* Room number  */}
 
             <div className="form-group p-1">
               <label htmlFor="room_number">Room No:</label>
@@ -74,23 +90,35 @@ function Rooms() {
               />
             </div>
 
-            <div className="form-group p-1">
-              <label htmlFor="type">Room Type:</label>
-              <input
-                type="text"
-                name="type"
-                id="type"
-                className="form-control"
-                placeholder="Enter the room types "
-                required
-                onChange={(event) => {
-                  setType(event.target.value);
-                }}
-              />
-            </div>
+            {/* Room type */}
 
             <div className="form-group p-1">
-              <label htmlFor="price">Price of the room (Per Day):</label>
+              <label htmlFor="room_type">Room Type:</label>
+              <select
+                name="room_type"
+                id="room_type"
+                className="form-control"
+                value={room_type}
+                onChange={(event) => {
+                  setRoomType(event.target.value);
+                }}
+              >
+                <option value="" disabled>
+                  Select the room type
+                </option>
+                <option value="Single">Single</option>
+                <option value="Double">Double</option>
+                <option value="Deluxe">Deluxe</option>
+                <option value="Villa">Villa</option>
+                <option value="Bungalow">Bungalo</option>
+                <option value="Penthouse">Penthouse</option>
+              </select>
+            </div>
+
+            {/* Price  */}
+
+            <div className="form-group p-1">
+              <label htmlFor="price">Price of the room (Per Day/Night):</label>
               <input
                 type="Number"
                 name="price"
@@ -104,52 +132,28 @@ function Rooms() {
               />
             </div>
 
+            {/* Room status  */}
+
             <label htmlFor="status">Room Status:</label>
             <select
               name="status"
               id="status"
               className="form-control"
-              onChange={(event) => setStatus(event.target.value)}
+              value={status} // Bind the selected value to the 'status' state
+              onChange={(event) => setStatus(event.target.value)} // Update the state when an option is selected
             >
-              <option value="" disabled selected>
+              <option value="" disabled>
                 Select the room status
               </option>
-              <option value="1">Available</option>
-              <option value="2">Booked</option>
-              <option value="3">Maintenance</option>
+              <option value="Available">Available</option>
+              <option value="Booked">Booked</option>
+              <option value="Maintenance">Maintenance</option>
             </select>
 
-            <div className="form-group p-1">
-              <label htmlFor="amenities">Facilites</label>
-              <input
-                type="text"
-                name="amenities"
-                id="amenities"
-                className="form-control"
-                placeholder="Enter the facilites"
-                required
-                onChange={(event) => {
-                  setAmenities(event.target.value);
-                }}
-              />
-            </div>
-            <div className="form-group p-1">
-              <label htmlFor="max_occupancy">Max occupancy of the room :</label>
-              <input
-                type="Number"
-                name="max_occupancy"
-                id="max_occupancy"
-                className="form-control"
-                placeholder="Enter the max occupancy of the room "
-                required
-                onChange={(event) => {
-                  setMaxOccupancy(event.target.value);
-                }}
-              />
-            </div>
+            {/* Ratings  */}
 
             <div className="form-group p-1">
-              <label htmlFor="Ratings">Ratings:</label>
+              <label htmlFor="Ratings">Ratings: (out of 5)</label>
               <input
                 type="Number"
                 name="Ratings"
@@ -190,4 +194,4 @@ function Rooms() {
   );
 }
 
-export default Rooms;
+export default CreateRoom;

@@ -1,16 +1,18 @@
 // import customer model
 
 const customerModel = require("../models/customerSchema");
-const User= require("../models/userSchema");
+const User = require("../models/userSchema");
 
 const createCustomer = async (req, res) => {
-  const {user_id, contact, address, dob, status } = req.body;
+  const { gender, contact, dob, address, nationality } = req.body;
+  // const { user_id, gender, contact, dob, address, nationality } = req.body;
+  //
+  console.log(req.body);
 
   try {
-    // const userId = req.user._id;
+    const userId = req.user._id;
     // const userId = user._id;
-    const userId = user_id;
-
+    // const userId = user_id;
 
     //Check if the user exists
     const user = await User.findById(userId);
@@ -32,10 +34,12 @@ const createCustomer = async (req, res) => {
 
     const customer = new customerModel({
       user_id: userId,
+      gender,
       contact,
-      address,
       dob,
-      status,
+      address,
+      nationality,
+      status: "Active", // Default status is "Active"
     });
 
     await customer.save();
@@ -46,18 +50,18 @@ const createCustomer = async (req, res) => {
     });
   } catch (err) {
     console.log(err);
-    // res.status(500).json({ message: "Internal server error" });
-    res.status(500).json({ message: "Internal server error", error: err.message });
-
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: err.message });
   }
 };
 
 const getAllCustomers = async (req, res) => {
   try {
-    const customers = await customerModel.find().populate(
-      "user_id",
-      "name email"
-    );
+    const customers = await customerModel
+      .find()
+      .populate("user_id", "name email");
+
     if (!customers.length) {
       return res.status(404).json({ message: "No customers found" });
     }
