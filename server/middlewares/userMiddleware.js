@@ -1,4 +1,4 @@
-const jwt= require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const UserModel = require("../models/userSchema"); // Your User model
 
 // Authentication Middleware
@@ -6,6 +6,8 @@ const authenticateToken = async (req, res, next) => {
   // Get token from Authorization header
   // const token = req.header("Authorization");
   const token = req.header("Authorization")?.split(" ")[1]; // Bearer [token]
+
+  console.log(token);
 
   if (!token) {
     return res
@@ -37,6 +39,11 @@ const authenticateToken = async (req, res, next) => {
     // Proceed to the next middleware or route handler
     next();
   } catch (error) {
+    if (error.name === "TokenExpiredError") {
+      return res
+        .status(401)
+        .json({ message: "Token expired. Please log in again." });
+    }
     console.error(error);
     return res.status(400).json({ message: "Invalid token" });
   }
@@ -55,5 +62,5 @@ const authenticateToken = async (req, res, next) => {
 //   };
 // };
 
-module.exports = authenticateToken ;
+module.exports = authenticateToken;
 // module.exports= authorizeRole;

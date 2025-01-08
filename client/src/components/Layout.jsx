@@ -17,11 +17,14 @@ function Layout({ children }) {
       <main
         style={{
           flex: 1,
-          backgroundColor: "lightblue",
+          backgroundImage: "url('/images/background_3.jpg')",
+          backgroundSize: "cover", // Ensures the image covers the entire area
+          backgroundRepeat: "no-repeat", // Prevents image repetition
+          backgroundPosition: "center", // Centers the image
           paddingTop: "2rem",
         }}
       >
-        <div style={{ marginBottom: "1rem" }}>{children}</div>
+        <div style={{ marginBottom: "3rem" ,marginTop:"1.5rem"}}>{children}</div>
       </main>
 
       <Footer />

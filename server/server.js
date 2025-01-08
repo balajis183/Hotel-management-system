@@ -2,8 +2,7 @@
 require("dotenv").config();
 
 // const secretKey = process.env.JWT_SECRET;
-// console.log(secretKey); 
-
+// console.log(secretKey);
 
 const express = require("express");
 const app = express();
@@ -16,6 +15,7 @@ const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
 const customerRoutes = require("./routes/customerRoutes");
 const roomRoutes = require("./routes/roomRoutes");
+const bookingRoutes = require("./routes/bookingRoutes");
 
 const connect = () => {
   try {
@@ -41,6 +41,7 @@ app.get("/", (req, res) => {
 app.use("/users", userRoutes);
 app.use("/customers", customerRoutes);
 app.use("/rooms", roomRoutes);
+app.use("/bookings", bookingRoutes);
 
 const PORT = 8000;
 app.listen(PORT, () => {

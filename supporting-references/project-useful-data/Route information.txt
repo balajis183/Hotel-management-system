@@ -46,3 +46,17 @@ http://localhost:8000/rooms
 Post   http://localhost:8000/rooms/create-room  - createRoom
 
 GET    http://localhost:8000/rooms/get-all-rooms  - get all rooms
+
+
+
+
+Bookings roomRoutes
+
+Root url --      http://localhost:8000/bookings
+
+
+POST --- http://localhost:8000/bookings/create-booking - createBooking
+
+
+GET        http://localhost:8000/bookings/get-bookings - get all bookings
+

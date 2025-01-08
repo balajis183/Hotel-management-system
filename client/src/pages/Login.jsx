@@ -27,7 +27,7 @@ function Login() {
         if (token) {
           localStorage.setItem("token", token); // Store the token in the browser's localStorage
           alert("User login successfully");
-          navigate("/customer");
+          setTimeout(() => navigate("/customer"), 1000);
         }
       })
 

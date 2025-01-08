@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+
 
 function Customer() {
   const [gender, setGender] = useState("");
@@ -14,11 +16,21 @@ function Customer() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log(token); 
+    console.log(token);
 
     if (!token) {
       alert("Unauthorized access. Please login.");
       navigate("/login"); // Redirect to login page
+    } else {
+      // Decode token and check expiry
+      const decodedToken = jwtDecode(token);
+      const currentTime = Date.now() / 1000; // Get current time in seconds
+
+      if (decodedToken.exp < currentTime) {
+        alert("Session expired. Please login again.");
+        localStorage.removeItem("token"); // Remove expired token
+        navigate("/login"); // Redirect to login page
+      }
     }
   }, [navigate]);
 

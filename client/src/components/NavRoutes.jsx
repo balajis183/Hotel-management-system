@@ -16,12 +16,12 @@ function NavRoutes() {
           <Route path="/" element={<Signup />} />
           <Route path="/home" element={<Home />} />
           <Route path="/createroom" element={<CreateRoom />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/customer" element={<Customer />} />
           <Route path="/viewrooms" element={<ViewRooms />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>
     </div>
