@@ -40,7 +40,7 @@ function CreateRoom() {
   return (
     <div>
       <Layout>
-        <div className=" card shadow-lg w-50 container border border-5 border-success rounded-4 ">
+        <div className=" card shadow-lg w-50 container  rounded-4 "style={{border: "5px solid lightslategray" }}>
           <h1 className="text-center mb-3">Create Room</h1>
 
           <form onSubmit={handleSubmit}>

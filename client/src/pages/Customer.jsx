@@ -4,7 +4,6 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
-
 function Customer() {
   const [gender, setGender] = useState("");
   const [contact, setContact] = useState("");
@@ -64,6 +63,7 @@ function Customer() {
       .then((res) => {
         console.log(res);
         alert("Customer data saved successfully");
+        setTimeout(() => navigate("/viewrooms"), 1000);
       })
 
       .catch((err) => {

@@ -1,5 +1,5 @@
 nav {
-  background-color:rgb(66,66,65);
+  background-color: lightslategrey;
   margin: 0;
   padding: 0;
 }
@@ -13,5 +13,5 @@ nav {
 }
 
 .nav-link:hover {
-  color: lightgreen;
+  color: rgb(27, 94, 32);
 }

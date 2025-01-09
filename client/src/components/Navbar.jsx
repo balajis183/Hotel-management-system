@@ -26,7 +26,7 @@ function Navbar() {
           <div className="collapse navbar-collapse" id="navbarNav ">
             <ul className="navbar-nav ms-auto text-white">
               <li className="nav-item">
-                <Link className="nav-link text-white" to="/home">
+                <Link className="nav-link" to="/home">
                   Home
                 </Link>
               </li>
@@ -52,9 +52,10 @@ function Navbar() {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/viewrooms">
-                  Display Rooms
+                  Rooms
                 </Link>
               </li>
+             
               <li className="nav-item">
                 <Link className="nav-link" to="/about">
                   About Us

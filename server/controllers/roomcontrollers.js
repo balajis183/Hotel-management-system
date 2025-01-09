@@ -61,7 +61,7 @@ const getAllRooms = async (req, res) => {
 
     res
       .status(200)
-      .json({ rooms: rooms, message: "Rooms fetched successfully"});
+      .json({ rooms: rooms, message: "Rooms fetched successfully" });
   } catch (error) {
     console.error(error);
     res
@@ -70,4 +70,28 @@ const getAllRooms = async (req, res) => {
   }
 };
 
-module.exports = { createRoom, getAllRooms };
+// Get a room by ID
+// Get a room by ID
+const getRoomById = async (req, res) => {
+  try {
+    const roomId = req.params.id; // Extract room ID from request parameters
+
+    // Find the room by ID
+    const room = await Room.findById(roomId);
+
+    if (!room) {
+      return res.status(404).json({ message: "Room not found" });
+    }
+
+    res.status(200).json({ room, message: "Room retrieved successfully" });
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json({ message: "Error fetching room", error: error.message });
+  }
+};
+
+
+
+module.exports = { createRoom, getAllRooms, getRoomById };

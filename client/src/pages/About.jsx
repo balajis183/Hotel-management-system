@@ -5,66 +5,126 @@ function About() {
   return (
     <div>
       <Layout>
-        <section id="about-us">
-          <h3>About StayHub</h3>
-          <p>
-            StayHub is an innovative and comprehensive hotel management platform
-            designed to revolutionize the way hotels operate. Aimed at
-            simplifying hotel operations, enhancing guest experiences, and
-            streamlining internal processes, StayHub empowers hotel staff and
-            customers alike. It offers a seamless, user-friendly interface that
-            supports both administrative and guest functions, enabling smooth
-            operations in every aspect of hotel management.
-          </p>
+        <section className="about-us-section py-5 bg-light  " style={{marginTop:"-4rem",marginBottom:"-3yrem"}}>
+          <div className="container">
+            <div className="text-center mb-5">
+              <h1 className="display-4">About StayHub</h1>
+              <p className="lead text-muted">
+                Redefining Hospitality Management with Innovation and Excellence
+              </p>
+            </div>
 
-          <p>
-            With StayHub, managing room bookings, tracking customer profiles,
-            and handling feedback becomes effortless. Our platform brings
-            together powerful features that cater to the specific needs of both
-            staff and guests, ensuring maximum efficiency and satisfaction.
-          </p>
+            <div className="row align-items-center mb-5">
+              <div className="col-md-6">
+                <img
+                  src="/images/hoteloverview.png"
+                  alt="StayHub Overview"
+                  className="img-fluid rounded shadow"
+                  style={{ maxWidth: "600px" }}
+                />
+              </div>
+              <div className="col-md-6">
+                <h3>Who We Are</h3>
+                <p>
+                  StayHub is a cutting-edge hotel management platform dedicated
+                  to transforming the hospitality industry. By integrating
+                  advanced technology with user-centric design, StayHub empowers
+                  hotels to streamline operations, enhance guest satisfaction,
+                  and deliver unparalleled service excellence.
+                </p>
+                <p>
+                  Our mission is to simplify the complexities of hotel
+                  management while providing an exceptional experience for both
+                  staff and guests. Whether you're managing room bookings or
+                  delivering personalized guest services, StayHub is your
+                  trusted partner in hospitality success.
+                </p>
+              </div>
+            </div>
 
-          <ul>
-            <li>
-              <strong>User Authentication:</strong> Secure and role-based
-              authentication that ensures only authorized personnel have access
-              to their respective areas of the platform. Guests and hotel staff
-              can securely access the system and perform necessary actions.
-            </li>
-            <li>
-              <strong>Room Management:</strong> StayHub allows hotel staff to
-              manage room availability in real-time, update pricing, and set the
-              room status (Available, Booked, Maintenance). This helps maintain
-              room occupancy and ensures customers always know what's available.
-            </li>
-            <li>
-              <strong>Real-Time Booking System:</strong> Guests can search for
-              and book available rooms instantly. The system shows room status
-              and availability in real-time, reducing booking errors and
-              providing a seamless booking experience for customers. Hotel staff
-              can manage and track bookings in one place, enabling efficient
-              check-ins and check-outs.
-            </li>
-            <li>
-              <strong>Customer Profiles:</strong> StayHub stores detailed
-              customer information, making it easier for hotel staff to manage
-              customer preferences, track their booking history, and personalize
-              their services.
-            </li>
-            <li>
-              <strong>Feedback and Ratings:</strong> After a stay, customers can
-              rate their experience and provide feedback on their room and
-              overall service. This valuable information helps hotel management
-              improve their services and enhance the customer experience.
-            </li>
-          </ul>
+            <div className="features-section py-4">
+              <h3 className="text-center mb-4">Key Features</h3>
+              <div className="row">
+                <div className="col-md-4 text-center">
+                  <i className="bi bi-shield-lock display-4 text-primary"></i>
+                  <h5 className="mt-3">Secure User Authentication</h5>
+                  <p>
+                    Role-based authentication ensures secure access for both
+                    staff and guests, protecting sensitive information.
+                  </p>
+                </div>
+                <div className="col-md-4 text-center">
+                  <i className="bi bi-house-door display-4 text-primary"></i>
+                  <h5 className="mt-3">Efficient Room Management</h5>
+                  <p>
+                    Real-time updates on room availability, pricing, and status
+                    ensure seamless room management and optimized occupancy.
+                  </p>
+                </div>
+                <div className="col-md-4 text-center">
+                  <i className="bi bi-calendar-check display-4 text-primary"></i>
+                  <h5 className="mt-3">Real-Time Bookings</h5>
+                  <p>
+                    Guests can book instantly with real-time availability
+                    updates, ensuring a hassle-free booking experience.
+                  </p>
+                </div>
+              </div>
+              <div className="row mt-4">
+                <div className="col-md-4 text-center">
+                  <i className="bi bi-person-lines-fill display-4 text-primary"></i>
+                  <h5 className="mt-3">Comprehensive Customer Profiles</h5>
+                  <p>
+                    Keep track of customer preferences, booking history, and
+                    personalized details to elevate guest satisfaction.
+                  </p>
+                </div>
+                <div className="col-md-4 text-center">
+                  <i className="bi bi-chat-left-text display-4 text-primary"></i>
+                  <h5 className="mt-3">Feedback & Ratings</h5>
+                  <p>
+                    Collect valuable feedback from guests to continuously
+                    improve services and enhance the guest experience.
+                  </p>
+                </div>
+                <div className="col-md-4 text-center">
+                  <i className="bi bi-bar-chart display-4 text-primary"></i>
+                  <h5 className="mt-3">Data-Driven Insights</h5>
+                  <p>
+                    Gain actionable insights through analytics to make informed
+                    decisions and drive operational efficiency.
+                  </p>
+                </div>
+              </div>
+            </div>
 
-          <p>
-            StayHub combines the power of modern technology with the simplicity
-            needed to streamline hotel management. Whether you’re a guest
-            booking your next stay or a hotel staff member managing rooms and
-            bookings, StayHub ensures a smooth and effective experience for all.
-          </p>
+            <div className="mission-section py-5">
+              <div className="row align-items-center">
+                <div className="col-md-6">
+                  <h3>Our Vision & Mission</h3>
+                  <p>
+                    At StayHub, we envision a future where hotel management is
+                    seamless, efficient, and customer-centric. Our mission is to
+                    empower the hospitality industry with tools and technology
+                    that enhance both operational efficiency and guest
+                    experiences.
+                  </p>
+                  <p>
+                    We believe in creating meaningful connections between hotels
+                    and their guests, ensuring every stay is memorable and
+                    rewarding.
+                  </p>
+                </div>
+                <div className="col-md-6">
+                  <img
+                    src="/images/Scrolling1.png"
+                    alt="Our Mission"
+                    className="img-fluid rounded shadow"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </Layout>
     </div>

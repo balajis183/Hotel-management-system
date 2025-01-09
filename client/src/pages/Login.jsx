@@ -45,7 +45,7 @@ function Login() {
   return (
     <div>
       <Layout>
-        <div className="container card shadow-lg  w-50 border border-5 border-success rounded-4">
+        <div className="container card shadow-lg  w-50  rounded-4" style={{border: "5px solid lightslategray" }}>
           <h1 className="text-center mb-3">Log in </h1>
           <form onSubmit={handleSubmit}>
             {/* Email  */}

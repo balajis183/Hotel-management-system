@@ -75,10 +75,10 @@ function Signup() {
   return (
     <div>
       <Layout>
-        <div className="container border border-5 border-success rounded-4 card shadow-lg w-50  ">
+        <div className="container rounded-4 card shadow-lg w-50  "style={{border: "5px solid lightslategray" }}>
           <h1 className="text-center mb-3">Sign Up</h1>
           <form onSubmit={handleSubmit}>
-            {/* Name  */}
+            {/* Name  */} 
             <div className="form-group">
               <label htmlFor="name">Name</label>
               <input

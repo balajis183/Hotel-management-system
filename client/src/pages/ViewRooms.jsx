@@ -56,7 +56,7 @@ function ViewRooms() {
                   </p>
                 </div>
                 <div className="card-footer text-center">
-                  <Link to={`/rooms/${room._id}`}>
+                  <Link to={`/viewrooms/${room._id}`}>
                     <button className="btn btn-primary">Book Now</button>
                   </Link>
                 </div>
@@ -67,12 +67,10 @@ function ViewRooms() {
       </div>
     );
   }
-  
 
   return (
     <div>
       <Layout>
-
         {/* <h1>Home page </h1> */}
         <h3 className="fw-semibold text-center text-success p-2 fw-light">
           {" "}
