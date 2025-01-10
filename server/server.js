@@ -16,6 +16,7 @@ const userRoutes = require("./routes/userRoutes");
 const customerRoutes = require("./routes/customerRoutes");
 const roomRoutes = require("./routes/roomRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
+const feedbackRoutes = require("./routes/feedbackRoutes");
 
 const connect = () => {
   try {
@@ -37,11 +38,12 @@ app.get("/", (req, res) => {
   res.send("Welcome to Hotel Management Syste and server is working  ");
 });
 
-//call user Routes
+//call  Routes(root url)
 app.use("/users", userRoutes);
 app.use("/customers", customerRoutes);
 app.use("/rooms", roomRoutes);
 app.use("/bookings", bookingRoutes);
+app.use("/feedback", feedbackRoutes);
 
 const PORT = 8000;
 app.listen(PORT, () => {

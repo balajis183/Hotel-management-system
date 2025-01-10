@@ -27,6 +27,7 @@ function Login() {
         if (token) {
           localStorage.setItem("token", token); // Store the token in the browser's localStorage
           alert("User login successfully");
+
           setTimeout(() => navigate("/customer"), 1000);
         }
       })
@@ -45,7 +46,10 @@ function Login() {
   return (
     <div>
       <Layout>
-        <div className="container card shadow-lg  w-50  rounded-4" style={{border: "5px solid lightslategray" }}>
+        <div
+          className="container card shadow-lg  w-50  rounded-4"
+          style={{ border: "5px solid lightslategray" }}
+        >
           <h1 className="text-center mb-3">Log in </h1>
           <form onSubmit={handleSubmit}>
             {/* Email  */}

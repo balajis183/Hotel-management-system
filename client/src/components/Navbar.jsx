@@ -31,8 +31,13 @@ function Navbar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/createroom">
-                  Create Rooms
+                <Link className="nav-link" to="/about">
+                  About Us
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/contact">
+                  Contact
                 </Link>
               </li>
               <li className="nav-item">
@@ -55,15 +60,14 @@ function Navbar() {
                   Rooms
                 </Link>
               </li>
-             
               <li className="nav-item">
-                <Link className="nav-link" to="/about">
-                  About Us
+                <Link className="nav-link" to="/createroom">
+                  Create Rooms
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/contact">
-                  Contact
+                <Link className="nav-link" to="/feedback">
+                  Feedback
                 </Link>
               </li>
             </ul>

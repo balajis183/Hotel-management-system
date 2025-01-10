@@ -16,7 +16,7 @@ const createBooking = async (req, res) => {
     }
 
     // Fetch the customer details using the authenticated user's ID
-    const customerId = req.user._id; // The authenticated user's ID is in req.user._id
+    const customerId = req.user._id;                          // The authenticated user's ID is in req.user._id
     const customer = await CustomerModel.findOne({ user_id: customerId });
 
     if (!customer) {

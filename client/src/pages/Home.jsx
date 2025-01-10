@@ -66,7 +66,7 @@ function Home() {
     <Layout>
       {/* Hero Section with Bootstrap Carousel */}
       <section className="hero-section position-relative"style={{marginTop:"-3.5rem",marginBottom:"3rem"}}>
-        <Carousel fade interval={2000}>
+        <Carousel fade interval={1000}>
           {carouselImages.map((image, index) => (
             <Carousel.Item key={index}>
               <Link to="/">
