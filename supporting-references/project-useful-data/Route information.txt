@@ -49,6 +49,13 @@ GET    http://localhost:8000/rooms/get-all-rooms  - get all rooms
 
 
 
+GET          http://localhost:8000/rooms/getSingleRoom/{roomId} 
+                        677d66d2f30a0a24a072639d 
+
+GET          http://localhost:8000/rooms/getSingleRoom/677d66d2f30a0a24a072639d
+
+
+
 
 Bookings roomRoutes
 
@@ -60,14 +67,13 @@ POST --- http://localhost:8000/bookings/create-booking - createBooking
 
 GET        http://localhost:8000/bookings/get-bookings - get all bookings
 
-GET          http://localhost:8000/rooms/getSingleRoom/{roomId} 
-                        677d66d2f30a0a24a072639d 
-
-GET          http://localhost:8000/rooms/getSingleRoom/677d66d2f30a0a24a072639d
+router.put("/confirm-booking/:booking_id",authenticateToken, confirmBooking);
 
 
+GET    http://localhost:8000/bookings/get-booking-by-id/:bookingId - get single booking using bookingId (id)
 
 
+PUT http://localhost:8000/bookings/confirm-booking/:bookingId - confirm booking using bookingId (id)
 
 Feedback
 

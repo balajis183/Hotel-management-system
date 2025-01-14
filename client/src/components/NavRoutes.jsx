@@ -10,6 +10,8 @@ import ViewRooms from "../pages/ViewRooms";
 import CreateRoom from "../pages/CreateRoom";
 import RoomBooking from "../pages/RoomBooking";
 import Feedback from "../pages/Feedback";
+import ConfirmBooking from "../pages/ConfirmBooking";
+import BookingDetails from "../pages/BookingDetails";
 function NavRoutes() {
   return (
     <div>
@@ -22,10 +24,13 @@ function NavRoutes() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/customer" element={<Customer />} />
           <Route path="/viewrooms" element={<ViewRooms />} />
-          <Route path="/viewrooms/:roomId" element={<RoomBooking />} />
+          <Route path="/viewrooms/booking/:roomId" element={<RoomBooking />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/feedback" element={<Feedback/>} />
+          <Route path="/feedback/:bookingId" element={<Feedback/>} / >
+          <Route path="/viewrooms/:roomId/booking-confirm/:bookingId" element={<ConfirmBooking />} />
+          <Route path="/details/booking-confirmed/:bookingId" element={<BookingDetails />} />
+
         </Routes>
       </BrowserRouter>
     </div>

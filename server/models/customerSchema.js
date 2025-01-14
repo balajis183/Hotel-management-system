@@ -32,7 +32,7 @@ const customerSchema = mongoose.Schema(
     nationality: {
       type: String,
       default: "Indian", // Default nationality set to "Indian"
-      // required: true,
+      required: true,
     },
 
     status: {

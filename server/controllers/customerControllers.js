@@ -38,7 +38,7 @@ const createCustomer = async (req, res) => {
       contact,
       dob,
       address,
-      nationality,
+      nationality:"Indian",
       status: "Active", // Default status is "Active"
     });
 

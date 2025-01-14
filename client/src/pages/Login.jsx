@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
-
+  <ToastContainer position="top-center" />;
   const navigate = useNavigate();
-
   function handleSubmit(event) {
     event.preventDefault();
     const formObj = { email, password };
@@ -28,7 +28,14 @@ function Login() {
           localStorage.setItem("token", token); // Store the token in the browser's localStorage
           alert("User login successfully");
 
-          setTimeout(() => navigate("/customer"), 1000);
+          if (res.data.customerExists) {
+            // If customer data exists, navigate to the "view rooms" page
+            setTimeout(() => navigate("/viewrooms"), 1000);
+          } else {
+            // If customer data doesn't exist, navigate to the "customer" page to collect data
+            toast("Kindly add the customer data for booking generation");
+            setTimeout(() => navigate("/customer"), 3000);
+          }
         }
       })
 

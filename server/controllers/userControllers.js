@@ -1,6 +1,7 @@
 // import user model
 
 const userModel = require("../models/userSchema");
+const customerModel = require("../models/customerSchema");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
@@ -83,10 +84,13 @@ const loginuser = async (req, res) => {
     const token = jwt.sign(
       { id: user._id, role: user.role }, // Payload containing user ID and role
       process.env.JWT_SECRET, // Secret key (set in .env file)
-      { expiresIn: "9m" } // Token validity (1 min)
+      { expiresIn: "12m" } // Token validity (12 min)
     );
 
     console.log("Generated JWT Token: ", token);
+
+    const customer = await customerModel.findOne({ user_id: user._id });
+    const customerExists = customer ? true : false;
 
     // Successful login
     res.status(200).json({
@@ -98,6 +102,7 @@ const loginuser = async (req, res) => {
         email: user.email,
         role: user.role,
       },
+      customerExists,
     });
   } catch (error) {
     console.error("Login error:", error);

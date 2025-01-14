@@ -71,7 +71,14 @@ function RoomBooking() {
 
       .then((res) => {
         console.log(res);
-        alert("Booking created successfully.");
+        const { bookingId, roomId } = res.data;
+        alert(
+          ` Booking created successfully!  \n Booking ID: ${bookingId} \n Hotel Name : ${roomDetails.hotel_name} \n Room ID: ${roomId} \n Redirecting to your confirmation ticket...`
+        );
+        setTimeout(() => {
+          navigate(`/viewrooms/${roomId}/booking-confirm/${bookingId}`); // Redirect to the confirmation page
+        }, 1000);
+
         // alert(res.data.message); // Show success message
       })
       .catch((err) => {
@@ -82,14 +89,17 @@ function RoomBooking() {
 
   return (
     <Layout>
-      <div className="container py-4">
+      <div className="container w-75">
         <h2 className="text-center">Room Booking</h2>
         {roomDetails ? (
           <div className="card my-4">
             <div className="card-body">
-              <h3 className="card-title">{roomDetails.hotel_name}</h3>
+              <h3 className="card-title fw-light">{roomDetails.hotel_name}</h3>
               <p className="card-text">
                 <strong>Room Number:</strong> {roomDetails.room_number}
+              </p>
+              <p className="card-text">
+                <strong>Address:</strong> {roomDetails.address}
               </p>
               <p className="card-text">
                 <strong>Type:</strong> {roomDetails.room_type}

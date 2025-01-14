@@ -16,7 +16,7 @@ const createBooking = async (req, res) => {
     }
 
     // Fetch the customer details using the authenticated user's ID
-    const customerId = req.user._id;                          // The authenticated user's ID is in req.user._id
+    const customerId = req.user._id; // The authenticated user's ID is in req.user._id
     const customer = await CustomerModel.findOne({ user_id: customerId });
 
     if (!customer) {
@@ -26,7 +26,7 @@ const createBooking = async (req, res) => {
     // Calculate the price based on check-in and check-out dates
     const nights =
       (new Date(check_out_date) - new Date(check_in_date)) / (1000 * 3600 * 24); // Calculate number of nights
-    const price = room.price * nights; // Assuming room.price is the price per night
+    const price = room.price * nights; 
 
     // Create the booking
     const booking = new BookingModel({
@@ -45,6 +45,8 @@ const createBooking = async (req, res) => {
     res.status(201).json({
       message: "Booking created successfully",
       booking,
+      bookingId: booking._id,
+      roomId: room._id,
     });
   } catch (err) {
     console.log(err);
@@ -85,12 +87,47 @@ const getAllBookings = async (req, res) => {
   }
 };
 
+const getBookingById = async (req, res) => {
+  try {
+    const { bookingId } = req.params; // Booking ID passed as a route parameter
+
+    // Find the booking by ID and populate relevant fields
+    const booking = await BookingModel.findById(bookingId)
+      .populate("customer_id", "name email")
+      .populate("room_id", "hotel_name room_number room_type price address Ratings")
+      .populate({
+        path: "customer_id", // Populate customer details
+        select: "user_id gender dob contact address ", // Only include user_id
+        populate: {
+          path: "user_id", // Populate user details from the User model
+          select: "name email", // Include name and email
+        },
+      });
+
+    // Handle case where booking is not found
+    if (!booking) {
+      return res.status(404).json({ message: "Booking not found" });
+    }
+
+    // Send the booking data
+    res.status(200).json({
+      message: "Booking retrieved successfully",
+      booking,
+    });
+  } catch (err) {
+    console.error(err);
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: err.message });
+  }
+};
+
 const confirmBooking = async (req, res) => {
-  const { booking_id } = req.params; // Booking ID passed in the URL
+  const { bookingId } = req.params; // Booking ID passed in the URL
 
   try {
     // Find the booking by ID
-    const booking = await BookingModel.findById(booking_id);
+    const booking = await BookingModel.findById(bookingId);
     if (!booking) {
       return res.status(404).json({ message: "Booking not found" });
     }
@@ -126,4 +163,9 @@ const confirmBooking = async (req, res) => {
   }
 };
 
-module.exports = { createBooking, getAllBookings, confirmBooking };
+module.exports = {
+  createBooking,
+  getAllBookings,
+  confirmBooking,
+  getBookingById,
+};

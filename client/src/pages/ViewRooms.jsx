@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 
 function ViewRooms() {
   const [rooms, setRooms] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -12,19 +15,35 @@ function ViewRooms() {
 
       .then((res) => {
         console.log(res);
+        // toast.success(res.data.message);
         alert(res.data.message);
         setRooms(res.data.rooms);
       })
       .catch((err) => {
+        toast.error("Failed to fetch rooms. Please try again.");
         console.log(err);
       });
   }, []);
+
+  function handleRoomClick(room) {
+    if (room.status === "Booked" || room.status === "Maintenance") {
+      // alert(`Room is under ${room.status}. Please select another room.`);
+      toast.info(`Room is under ${room.status}. Please select another room.` ,{ theme: "dark" });
+    } else {
+      toast.success(`The selected room is avaliable  `,{ theme: "dark" });
+      // navigate(`/viewrooms/booking/${room._id}`);
+      setTimeout(() => {
+        navigate(`/viewrooms/booking/${room._id}`);
+      }, 1500);
+    }
+  }
+
   function displayRooms() {
     return (
       <div className="container py-4">
         <div className="row g-4">
-          {rooms.map((room, index) => (
-            <div key={index} className="col-12 col-sm-6 col-md-4">
+          {rooms.map((room) => (
+            <div key={room._id} className="col-12 col-sm-6 col-md-4">
               <div className="card h-100">
                 <div className="card-body">
                   <h2 className="card-title  fw-light">{room.hotel_name}</h2>
@@ -56,9 +75,15 @@ function ViewRooms() {
                   </p>
                 </div>
                 <div className="card-footer text-center">
-                  <Link to={`/viewrooms/${room._id}`}>
-                    <button className="btn btn-primary">Book Now</button>
-                  </Link>
+                  {/* <Link to={`/viewrooms/booking/${room._id}`}> */}
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => handleRoomClick(room)}
+                    // disabled={room.status !== "Available"} // Disable if not available
+                  >
+                    Book Now
+                  </button>
+                  {/* </Link> */}
                 </div>
               </div>
             </div>
@@ -76,10 +101,10 @@ function ViewRooms() {
           {" "}
           Book your room in the Available hotels.
         </h3>
-        <div className="d-flex m-2">{displayRooms()}</div>
-
         {/* fetch the data from the data into diplay/view rooms page  */}
+        <div className="d-flex m-2">{displayRooms()}</div>
       </Layout>
+      <ToastContainer position="top-center" autoClose={3000} />
     </div>
   );
 }

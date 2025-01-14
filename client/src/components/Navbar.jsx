@@ -1,12 +1,31 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/Navbar.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 
 function Navbar() {
+
+  const navigate = useNavigate();
+  
+  const handleLogout = () => {
+    const token = localStorage.getItem("token"); // Check if the token exists
+    if (token) {
+      localStorage.removeItem("token"); // Clear the token
+      toast.success("Removed JWT Token successfully \n Kindly login :)");
+      setTimeout(() => {
+        navigate("/login"); // Redirect to the login page
+      }, 2000); // 2000 milliseconds = 2 seconds
+    } else {
+      toast.error("No token found! Please log in first.");
+    }
+  };
   return (
     <div>
+      <ToastContainer position="top-center" />
+
       <nav className="navbar navbar-expand-lg navbar-light ">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
@@ -50,25 +69,28 @@ function Navbar() {
                   Sign up
                 </Link>
               </li>{" "}
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link className="nav-link" to="/customer">
                   Customer
                 </Link>
-              </li>
-              <li className="nav-item">
+              </li> */}
+              {/* <li className="nav-item">
                 <Link className="nav-link" to="/viewrooms">
                   Rooms
                 </Link>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <Link className="nav-link" to="/createroom">
                   Create Rooms
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/feedback">
-                  Feedback
-                </Link>
+                <button
+                  className="btn btn-outline-success text-white nav-link"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </button>
               </li>
             </ul>
           </div>

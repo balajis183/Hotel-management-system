@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa"; // Importing a star icon from react-icons
+
 
 function Feedback() {
   const { bookingId } = useParams();
@@ -13,6 +14,7 @@ function Feedback() {
   const [would_recommend, setWouldRecommend] = useState(true);
   const [stay_purpose, setStayPurpose] = useState("");
   const [errorMessage, setErrorMessage] = useState(""); // To display error messages
+  const navigate=useNavigate();
 
   // Handle star rating selection
   const handleRatingClick = (ratingType, rating) => {
@@ -48,6 +50,7 @@ function Feedback() {
       .then((res) => {
         console.log(res);
         alert("Feedback submitted successfully");
+        navigate("/");
         setErrorMessage(""); // Clear any previous error message
       })
       .catch((error) => {

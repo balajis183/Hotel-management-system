@@ -5,6 +5,7 @@ const {
   createBooking,
   getAllBookings,
   confirmBooking,
+  getBookingById,
 } = require("../controllers/bookingControllers");
 
 
@@ -16,6 +17,8 @@ router.post("/create-booking",authenticateToken, createBooking);
 // GET route to fetch all bookings
 router.get("/get-bookings", getAllBookings);
 
-router.put("/confirm-booking/:booking_id",authenticateToken, confirmBooking);
+router.get("/get-booking-by-id/:bookingId", getBookingById);
+
+router.put("/confirm-booking/:bookingId",authenticateToken, confirmBooking);
 
 module.exports = router;
