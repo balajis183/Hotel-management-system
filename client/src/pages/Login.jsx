@@ -24,17 +24,24 @@ function Login() {
         const token = res.data.token; // Capture the token from the response data
         console.log("Token received:", token); // Check if the token is returned from the backend
 
+        const userRole = res.data.user.role;
+        console.log("User role:", userRole);
+
         if (token) {
           localStorage.setItem("token", token); // Store the token in the browser's localStorage
-          alert("User login successfully");
+          alert("User/Admin login successfully");
 
-          if (res.data.customerExists) {
-            // If customer data exists, navigate to the "view rooms" page
-            setTimeout(() => navigate("/viewrooms"), 1000);
-          } else {
-            // If customer data doesn't exist, navigate to the "customer" page to collect data
-            toast("Kindly add the customer data for booking generation");
-            setTimeout(() => navigate("/customer"), 3000);
+          if (userRole === 2) {
+            toast.success("Admin/staff login successfull. Kindly add Rooms");
+            setTimeout(() => navigate("/createroom"), 3000);
+          } else if (userRole === 1) {
+            // If the role is CUSTOMER (1), check if customer data exists
+            if (res.data.customerExists) {
+              setTimeout(() => navigate("/viewrooms"), 1000);
+            } else {
+              toast.info("Kindly add the customer data for booking generation");
+              setTimeout(() => navigate("/customer"), 3000);
+            }
           }
         }
       })

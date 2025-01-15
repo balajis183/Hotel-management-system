@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function CreateRoom() {
   const [hotel_name, setHotel_name] = useState("");
@@ -11,6 +12,7 @@ function CreateRoom() {
   const [status, setStatus] = useState("");
   const [image, setImage] = useState("");
   const [Ratings, setRatings] = useState("");
+  const navigate = useNavigate();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -31,6 +33,8 @@ function CreateRoom() {
       .then((res) => {
         console.log(res);
         alert("Room Added successfully");
+        alert("Redirecting to the Home page, kindly log out");
+        setTimeout(() => navigate("/"), 2000);
       })
       .catch((error) => {
         console.log("Error", error);
@@ -40,7 +44,10 @@ function CreateRoom() {
   return (
     <div>
       <Layout>
-        <div className=" card shadow-lg w-50 container  rounded-4 "style={{border: "5px solid lightslategray" }}>
+        <div
+          className=" card shadow-lg w-50 container  rounded-4 "
+          style={{ border: "5px solid lightslategray" }}
+        >
           <h1 className="text-center mb-3">Create Room</h1>
 
           <form onSubmit={handleSubmit}>

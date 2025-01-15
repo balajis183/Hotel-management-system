@@ -26,7 +26,7 @@ const createBooking = async (req, res) => {
     // Calculate the price based on check-in and check-out dates
     const nights =
       (new Date(check_out_date) - new Date(check_in_date)) / (1000 * 3600 * 24); // Calculate number of nights
-    const price = room.price * nights; 
+    const price = room.price * nights;
 
     // Create the booking
     const booking = new BookingModel({
@@ -94,7 +94,10 @@ const getBookingById = async (req, res) => {
     // Find the booking by ID and populate relevant fields
     const booking = await BookingModel.findById(bookingId)
       .populate("customer_id", "name email")
-      .populate("room_id", "hotel_name room_number room_type price address Ratings")
+      .populate(
+        "room_id",
+        "hotel_name room_number room_type price address Ratings"
+      )
       .populate({
         path: "customer_id", // Populate customer details
         select: "user_id gender dob contact address ", // Only include user_id
@@ -108,6 +111,8 @@ const getBookingById = async (req, res) => {
     if (!booking) {
       return res.status(404).json({ message: "Booking not found" });
     }
+
+    console.log(booking);
 
     // Send the booking data
     res.status(200).json({
@@ -150,6 +155,8 @@ const confirmBooking = async (req, res) => {
 
     booking.status = "confirmed";
     await booking.save();
+
+    console.log(booking); // checking the status after confirming.
 
     res.status(200).json({
       message: "Booking confirmed successfully",

@@ -28,12 +28,18 @@ const createUser = async (req, res) => {
       STAFF: 2,
     };
 
-    // const {Roles} = require("../models/userSchema");
+    const predefinedStaffEmails = [
+      "admin@stayhub.com",
+      "manager@stayhub.com",
+      "support@stayhub.com",
+      "balaji@stayhub.com",
+      "manikanta@stayhub.com",
+    ]; // List of predefined staff emails
 
     let role = Roles.CUSTOMER; // Default role is CUSTOMER
-    const domain = email.split("@")[1]; // Extract domain from email
-    if (domain === "stayhub.com") {
-      role = Roles.STAFF; // Assign STAFF role if email is from stayhub.com
+
+    if (predefinedStaffEmails.includes(email)) {
+      role = Roles.STAFF; // Assign STAFF role if email matches predefined list
     }
 
     // Hash the password

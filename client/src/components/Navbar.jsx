@@ -7,9 +7,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
 
 function Navbar() {
-
   const navigate = useNavigate();
-  
+
   const handleLogout = () => {
     const token = localStorage.getItem("token"); // Check if the token exists
     if (token) {
@@ -79,11 +78,11 @@ function Navbar() {
                   Rooms
                 </Link>
               </li> */}
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link className="nav-link" to="/createroom">
                   Create Rooms
                 </Link>
-              </li>
+              </li> */}
               <li className="nav-item">
                 <button
                   className="btn btn-outline-success text-white nav-link"

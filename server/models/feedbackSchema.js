@@ -38,7 +38,7 @@ const feedbackSchema = new mongoose.Schema(
     },
     stay_purpose: {
       type: String,
-      enum: ["Business", "Leisure", "Exploring", "Others"], // Dropdown-like options
+      enum: ["Business", "Leisure", "Exploring", "Vacation", "Conference","Others"], // Dropdown-like options
       required: false, // Optional but useful for analytics
     },
   },

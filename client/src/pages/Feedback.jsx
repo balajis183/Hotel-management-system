@@ -4,7 +4,6 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa"; // Importing a star icon from react-icons
 
-
 function Feedback() {
   const { bookingId } = useParams();
   const [comments, setComments] = useState("");
@@ -14,7 +13,7 @@ function Feedback() {
   const [would_recommend, setWouldRecommend] = useState(true);
   const [stay_purpose, setStayPurpose] = useState("");
   const [errorMessage, setErrorMessage] = useState(""); // To display error messages
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   // Handle star rating selection
   const handleRatingClick = (ratingType, rating) => {
@@ -182,7 +181,8 @@ function Feedback() {
                 <option value="Leisure">Leisure</option>
                 <option value="Vacation">Vacation</option>
                 <option value="Conference">Conference</option>
-                <option value="Other">Other</option>
+                <option value="Exploring">Exploring</option>
+                <option value="Others">Others</option>
               </select>
             </div>
 
