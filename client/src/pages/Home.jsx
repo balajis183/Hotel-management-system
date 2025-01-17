@@ -62,10 +62,15 @@ function Home() {
     { src: "/images/Scrolling5.png", alt: "Cozy Room" },
   ];
 
+  const token = localStorage.getItem("token");
+
   return (
     <Layout>
       {/* Hero Section with Bootstrap Carousel */}
-      <section className="hero-section position-relative"style={{marginTop:"-3.5rem",marginBottom:"3rem"}}>
+      <section
+        className="hero-section position-relative"
+        style={{ marginTop: "-3.5rem", marginBottom: "3rem" }}
+      >
         <Carousel fade interval={1000}>
           {carouselImages.map((image, index) => (
             <Carousel.Item key={index}>
@@ -95,16 +100,23 @@ function Home() {
         >
           <h1 className="display-4">Welcome to StayHub</h1>
           <p className="lead">Experience luxury and comfort at its finest.</p>
-          <Link to="/login" className="btn btn-primary btn-lg mt-3">
-            Book Now
-          </Link>
+
+          {token ? (
+            <Link to="/viewrooms" className="btn btn-primary btn-lg mt-3">
+              Book Now
+            </Link>
+          ) : (
+            <Link to="/login" className="btn btn-primary btn-lg mt-3">
+             Login to Book Rooms
+            </Link>
+          )}
         </div>
       </section>
 
       {/* Gallery Section - Displaying Hotel Images Only */}
       <section className="container mt-5">
         <h3 className="text-center mb-4">Explore Our Hotels</h3>
-        <div className="row g-4" style={{marginBottom:"5rem"}}>
+        <div className="row g-4" style={{ marginBottom: "5rem" }}>
           {hotelImages.map((hotel, index) => (
             <div className="col-12 col-sm-6 col-md-4" key={index}>
               <div className="card h-100 shadow-sm">

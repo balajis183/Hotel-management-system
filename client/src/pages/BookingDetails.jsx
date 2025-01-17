@@ -224,13 +224,17 @@ function BookingDetails() {
 
       <div className="d-flex justify-content-center mt-4">
         {/* Feedback Button inside Link */}
-        <Link to={`/feedback/${bookingId}`} className="btn-link me-3">    
+        <Link to={`/feedback/${bookingId}`} className="btn-link me-3">
           <button className="btn btn-success">Leave Feedback</button>
         </Link>
 
         {/* Home Button inside Link */}
-        <Link to="/" className="btn-link">
+        <Link to="/" className="btn-link me-3">
           <button className="btn btn-secondary">Go to Home</button>
+        </Link>
+
+        <Link to="/viewrooms" className="btn-link ">
+          <button className="btn btn-primary">Book Another Room</button>
         </Link>
       </div>
     </Layout>
