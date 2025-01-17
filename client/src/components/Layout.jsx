@@ -17,8 +17,8 @@ function Layout({ children }) {
       <main
         style={{
           flex: 1,
-          // backgroundColor:"white",
-          backgroundColor: "#f1f8e9",
+          backgroundColor:"white",
+          // backgroundColor: "#f1f8e9",
           // backgroundImage: "url('/images/background_3.jpg')",
           backgroundSize: "cover", // Ensures the image covers the entire area
           backgroundRepeat: "no-repeat", // Prevents image repetition

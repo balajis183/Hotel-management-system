@@ -81,10 +81,19 @@ function RoomBooking() {
 
         // alert(res.data.message); // Show success message
       })
+    
       .catch((err) => {
-        console.log("Error creating booking:", err);
-        alert("Error creating booking. Please try again.");
+        if (err.response && err.response.data && err.response.data.message) {
+          // If backend sends an error message, display it
+          console.error("Error creating booking:", err.response.data.message);
+          alert(err.response.data.message); // Show the backend message
+        } else {
+          // Handle unexpected errors (e.g., network issues)
+          console.error("Error creating booking:", err);
+          alert("Error creating booking. Please try again.");
+        }
       });
+      
   };
 
   return (

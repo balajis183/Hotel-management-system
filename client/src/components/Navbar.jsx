@@ -8,17 +8,19 @@ import { toast, ToastContainer } from "react-toastify";
 
 function Navbar() {
   const navigate = useNavigate();
+  const token = localStorage.getItem("token"); // Check if the token exists
 
   const handleLogout = () => {
-    const token = localStorage.getItem("token"); // Check if the token exists
     if (token) {
       localStorage.removeItem("token"); // Clear the token
-      toast.success("Removed JWT Token successfully \n Kindly login :)");
+      toast.success(
+        " Logout successfully !\nRemoved JWT Token successfully \n Kindly login :)"
+      );
       setTimeout(() => {
         navigate("/login"); // Redirect to the login page
-      }, 2000); // 2000 milliseconds = 2 seconds
+      }, 3000); // 2000 milliseconds = 2 seconds
     } else {
-      toast.error("No token found! Please log in first.");
+      toast.error("Please log in first. No token found! ");
     }
   };
   return (
@@ -58,16 +60,30 @@ function Navbar() {
                   Contact
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/login">
-                  Login
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/signup">
-                  Sign up
-                </Link>
-              </li>{" "}
+
+              {token ? (
+                <li className="nav-item">
+                  <button
+                    className="btn btn-outline-success text-white nav-link"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
+                </li>
+              ) : (
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/login">
+                      Login
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/signup">
+                      Sign up
+                    </Link>
+                  </li>
+                </>
+              )}
               {/* <li className="nav-item">
                 <Link className="nav-link" to="/customer">
                   Customer
@@ -83,14 +99,6 @@ function Navbar() {
                   Create Rooms
                 </Link>
               </li> */}
-              <li className="nav-item">
-                <button
-                  className="btn btn-outline-success text-white nav-link"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </button>
-              </li>
             </ul>
           </div>
         </div>

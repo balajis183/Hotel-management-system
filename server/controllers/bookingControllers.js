@@ -48,11 +48,17 @@ const createBooking = async (req, res) => {
       bookingId: booking._id,
       roomId: room._id,
     });
-  } catch (err) {
-    console.log(err);
-    res
-      .status(500)
-      .json({ message: "Internal server error", error: err.message });
+  } catch (error) {
+    if (error.name === "ValidationError") {
+      // Extract and send only the first validation error message
+      const message = Object.values(error.errors)[0].message;
+      res.status(400).json({ message });
+    } else {
+      console.log(error);
+      res
+        .status(500)
+        .json({ message: "Internal server error", error: error.message });
+    }
   }
 };
 

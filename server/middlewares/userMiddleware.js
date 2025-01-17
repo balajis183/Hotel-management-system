@@ -31,6 +31,7 @@ const authenticateToken = async (req, res, next) => {
 
     if (user.role !== 1) {
       // 1 corresponds to 'customer' role
+      console.log("403 Forbidden: Not a customer");
       return res
         .status(403)
         .json({ message: "Access denied. You are not a customer." });
