@@ -88,3 +88,11 @@ Purpose: To get all feedback (useful for staff/admins).
 GET /feedback/getfeedback/:bookingId:
 URL:    http://localhost:8000/feedback/getfeedback/:bookingId
 Purpose: To get feedback by a specific booking ID.
+
+
+
+Contact Us
+
+Post url to add contact us
+
+URL : http://localhost:8000/contact/savecontact

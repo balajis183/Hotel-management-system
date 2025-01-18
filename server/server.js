@@ -17,6 +17,7 @@ const customerRoutes = require("./routes/customerRoutes");
 const roomRoutes = require("./routes/roomRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
 const feedbackRoutes = require("./routes/feedbackRoutes");
+const contactRoutes= require("./routes/contactRoutes");
 
 const connect = () => {
   try {
@@ -44,6 +45,7 @@ app.use("/customers", customerRoutes);
 app.use("/rooms", roomRoutes);
 app.use("/bookings", bookingRoutes);
 app.use("/feedback", feedbackRoutes);
+app.use("/contact", contactRoutes);
 
 const PORT = 8000;
 app.listen(PORT, () => {

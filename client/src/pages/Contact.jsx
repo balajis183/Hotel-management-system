@@ -1,105 +1,153 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../components/Layout";
+import axios from "axios";
+import "../styles/Contact.css";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
-function Contact() {
+const Contact = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    // Check for token
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.warn("Please log in to send a message.");
+      setTimeout(() => navigate("/login"), 2500); // Redirect to login page
+      return;
+    }
+    const formObj = {
+      name,
+      email,
+      phone,
+      message,
+    };
+
+    console.log(formObj);
+
+    axios
+      .post("http://localhost:8000/contact/savecontact", formObj)
+      .then((res) => {
+        console.log(res);
+        toast.success("Your Message has been sent successfully!");
+
+        // Reset the form fields
+        setName("");
+        setEmail("");
+        setPhone("");
+        setMessage("");
+      })
+      .catch((error) => {
+        console.log("Error", error);
+      });
+  };
+
   return (
-    <div>
-      <Layout>
-        <section id="contact-us" className="container">
-          <h2>Contact Us</h2>
-          <p>
-            We'd love to hear from you! Whether you have questions, feedback, or
-            need assistance, feel free to reach out to us. Our team is ready to
-            help you with anything related to <strong>StayHub</strong>, from
-            technical support to general inquiries.
-          </p>
+    <Layout>
+      <div className="contact-page" style={{ marginTop: "-3.5rem" }}>
+        <div className="contact-header">
+          <h1>Contact Us</h1>
+          <p>We're here to assist you. Feel free to reach out!</p>
+        </div>
 
-          <h3>Reach Us via the Following Channels:</h3>
-          <ul>
-            <li>
-              <strong>Email:</strong>{" "}
-              <a href="mailto:support@stayhub.com">support@stayhub.com</a>
-            </li>
-            <li>
-              <strong>Phone:</strong>{" "}
-              <a href="tel:+18001234567">+1 (800) 123-4567</a>
-            </li>
-            <li>
-              <strong>Address:</strong> StayHub Inc., 1234 Hotel Avenue, Suite
-              567, Cityville, Country
-            </li>
-            <li>
-              <strong>Business Hours:</strong> Monday to Friday, 9:00 AM to 6:00
-              PM
-            </li>
-          </ul>
+        <div className="contact-content">
+          <section className="contact-form-section">
+            <h2>Get in Touch</h2>
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <label htmlFor="name">Your Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
+                  required
+                  placeholder="Enter your name"
+                />
+              </div>
 
-          <p>
-            You can also fill out the form below, and we'll get back to you as
-            soon as possible!
-          </p>
+              <div className="form-group">
+                <label htmlFor="email">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  required
+                  placeholder="Enter your email"
+                />
+              </div>
 
-          <form action="/submit-contact-form" method="POST">
-            <div className="mb-3">
-              <label htmlFor="name" className="form-label">
-                Your Name
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                name="name"
-                required
-              />
+              <div className="form-group">
+                <label htmlFor="phone">Phone Number</label>
+                <input
+                  type="tele"
+                  id="phone"
+                  name="phone"
+                  value={phone}
+                  onChange={(event) => setPhone(event.target.value)}
+                  required
+                  placeholder="Enter your phone number"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="message">Your Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  value={message}
+                  onChange={(event) => setMessage(event.target.value)}
+                  required
+                  placeholder="Type your message here"
+                ></textarea>
+              </div>
+
+              <button type="submit" className="submit-btn">
+                Send Message
+              </button>
+            </form>
+          </section>
+
+          <section className="contact-info-section">
+            <h2>Our Location</h2>
+            <p>
+              <strong>Address: </strong>
+              36th Cross Rd, 1st floor, Stayhub chambers 4th Block Jayanagar,
+              Bengaluru, Karnataka 560041
+            </p>
+            <p>
+              <strong>Phone:</strong> +91 9108105199
+            </p>
+            <p>
+              <strong>Email:</strong> info@stayhub.com | balaji@stayhub.com |
+              mani@stayhub.com |
+            </p>
+
+            <div className="map-container">
+              <iframe
+                title="Hotel Location"
+                width="600"
+                height="400"
+                src="https://tinyurl.com/googlemap-stayhub"
+                allowFullScreen=""
+                loading="lazy"
+              ></iframe>
             </div>
-
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">
-                Your Email
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                name="email"
-                required
-              />
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="subject" className="form-label">
-                Subject
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="subject"
-                name="subject"
-                required
-              />
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="message" className="form-label">
-                Message
-              </label>
-              <textarea
-                className="form-control"
-                id="message"
-                name="message"
-                rows="4"
-                required
-              ></textarea>
-            </div>
-
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
-          </form>
-        </section>
-      </Layout>
-    </div>
+          </section>
+        </div>
+      </div>
+      <ToastContainer position="top-center" theme="dark" />
+    </Layout>
   );
-}
+};
 
 export default Contact;

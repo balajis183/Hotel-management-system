@@ -1,11 +1,10 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "../styles/Navbar.css";
-// import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import  "../../node_modules/bootstrap/dist/js/bootstrap.bundle.js"
-import "react-toastify/dist/ReactToastify.css";
 import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -15,20 +14,20 @@ function Navbar() {
     if (token) {
       localStorage.removeItem("token"); // Clear the token
       toast.success(
-        " Logout successfully !\nRemoved JWT Token successfully \n Kindly login :)"
+        "Logout successfully! Removed JWT Token successfully. Kindly login :)"
       );
       setTimeout(() => {
         navigate("/login"); // Redirect to the login page
-      }, 3000); // 2000 milliseconds = 2 seconds
+      }, 3000);
     } else {
-      toast.error("Please log in first. No token found! ");
+      toast.error("Please log in first. No token found!");
     }
   };
+
   return (
     <div>
       <ToastContainer position="top-center" />
-
-      <nav className="navbar navbar-expand-lg navbar-light ">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             StayHub
@@ -45,7 +44,7 @@ function Navbar() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ms-auto text-white">
+            <ul className="navbar-nav ms-auto">
               <li className="nav-item">
                 <Link className="nav-link" to="/home">
                   Home
@@ -58,14 +57,13 @@ function Navbar() {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/contact">
-                  Contact Us
+                  Contact
                 </Link>
               </li>
-
               {token ? (
                 <li className="nav-item">
                   <button
-                    className="btn btn-outline-success text-white nav-link"
+                    className="btn btn-outline-success nav-link"
                     onClick={handleLogout}
                   >
                     Logout
@@ -85,21 +83,6 @@ function Navbar() {
                   </li>
                 </>
               )}
-              {/* <li className="nav-item">
-                <Link className="nav-link" to="/customer">
-                  Customer
-                </Link>
-              </li> */}
-              {/* <li className="nav-item">
-                <Link className="nav-link" to="/viewrooms">
-                  Rooms
-                </Link>
-              </li> */}
-              {/* <li className="nav-item">
-                <Link className="nav-link" to="/createroom">
-                  Create Rooms
-                </Link>
-              </li> */}
             </ul>
           </div>
         </div>

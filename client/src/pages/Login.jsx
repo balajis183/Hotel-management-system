@@ -29,7 +29,7 @@ function Login() {
 
         if (token) {
           localStorage.setItem("token", token); // Store the token in the browser's localStorage
-          alert("User/Admin login successfully");
+          toast.success("User/Admin login successfully");
 
           if (userRole === 2) {
             toast.success("Admin/staff login successfull. Kindly add Rooms");

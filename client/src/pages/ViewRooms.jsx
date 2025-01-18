@@ -28,9 +28,11 @@ function ViewRooms() {
   function handleRoomClick(room) {
     if (room.status === "Booked" || room.status === "Maintenance") {
       // alert(`Room is under ${room.status}. Please select another room.`);
-      toast.info(`Room is under ${room.status}. Please select another room.` ,{ theme: "dark" });
+      toast.info(`Room is under ${room.status}. Please select another room.`, {
+        theme: "dark",
+      });
     } else {
-      toast.success(`The selected room is avaliable  `,{ theme: "dark" });
+      toast.success(`The selected room is avaliable  `, { theme: "dark" });
       // navigate(`/viewrooms/booking/${room._id}`);
       setTimeout(() => {
         navigate(`/viewrooms/booking/${room._id}`);
