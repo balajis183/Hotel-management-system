@@ -31,7 +31,7 @@ const contactRoutes = require("./routes/contactRoutes");
 
 const connect = async () => {
   try {
-    await mongoose.connect(process.env.MONGODB_URL);
+    await mongoose.connect("mongodb+srv://Balajis1812:balaji123!@cluster0.xeoxr.mongodb.net/Hotel_Booking_System");
     console.log("Connected to Database of MongoDB");
   } catch(err) {
     console.log("Error connecting to MongoDB:", err.message);
