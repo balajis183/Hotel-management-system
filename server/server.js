@@ -42,7 +42,7 @@ const connect = async () => {
 // cors middleware
 app.use(
   cors({
-    origin: "*",
+    origin: "http://13.202.204.246",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
