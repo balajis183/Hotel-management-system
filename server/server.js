@@ -71,6 +71,6 @@ app.use("/contact", contactRoutes);
 const PORT = 80;
 app.listen(PORT, () => {
   console.log("Server is listening on port", PORT);
-  console.log(`http://localhost:80`);
+  console.log(`http://13.202.204.246`);
   connect();
 });
