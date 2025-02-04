@@ -39,7 +39,12 @@ const connect = async () => {
 };
 
 // cors middleware
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  
+}));
 
 // used to parse json requests
 app.use(bodyparser.json());
