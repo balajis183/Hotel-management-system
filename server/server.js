@@ -10,7 +10,6 @@ const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
 const cors = require("cors");
 
-
 const path = require("path");
 // const https = require("https"); // Import the HTTPS module
 // const fs = require("fs"); // Import the File System module
@@ -31,20 +30,23 @@ const contactRoutes = require("./routes/contactRoutes");
 
 const connect = async () => {
   try {
-    await mongoose.connect("mongodb+srv://Balajis1812:balaji123!@cluster0.xeoxr.mongodb.net/Hotel_Booking_System");
+    await mongoose.connect(
+      "mongodb+srv://Balajis1812:balaji123!@cluster0.xeoxr.mongodb.net/Hotel_Booking_System"
+    );
     console.log("Connected to Database of MongoDB");
-  } catch(err) {
+  } catch (err) {
     console.log("Error connecting to MongoDB:", err.message);
   }
 };
 
 // cors middleware
-app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  
-}));
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 // used to parse json requests
 app.use(bodyparser.json());
