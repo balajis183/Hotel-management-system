@@ -14,6 +14,7 @@ function Layout({ children }) {
       <Navbar />
       {/* <main>{children}</main> */}
 
+      
       <main
         style={{
           flex: 1,
@@ -35,3 +36,5 @@ function Layout({ children }) {
 }
 
 export default Layout;
+
+
