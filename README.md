@@ -26,6 +26,11 @@ StayHub is deployed on an AWS EC2 instance with an **Elastic IP:**
 - **Seamless API Calls:** Uses **Axios instance** for efficient API communication.
 - **Real-time Notifications:** Implemented using `react-toastify` for success and error alerts.
 - **Smooth Navigation:** Implemented with `react-router-dom` for easy page transitions.
+- **Hero Section with Image Carousel:** Engaging banner with multiple slides showcasing hotel ambiance.  
+- **Room Listings with Interactive Cards:** Displays available rooms with images, prices, and booking options.  
+- **Navigation Bar with Authentication Handling:** Conditional rendering for login, logout, and dashboard links.  
+- **Search & Filter Functionality:** Allows customers to filter rooms based on availability, price, and ratings.  
+- **Customer Feedback & Contact Section:** Users can submit reviews and reach out via the contact form.  
 
 ## 🏗 Project Structure
 
@@ -161,7 +166,7 @@ If you have any questions or feedback, feel free to reach out:
 ---
 
 
-For more project visit github profile.
+For more projects visit my github profile.
 ```bash
 https://github.com/balajis183
 ```
