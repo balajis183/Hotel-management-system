@@ -43,7 +43,7 @@ Hotel-Management-System/
 │   ├── models/              # Mongoose models
 │   ├── routes/              # API endpoints
 │   ├── middlewares/         # Authentication & authorization
-│   ├── cornJobs             # Manages reserved rooms, checkout rooms.
+│   ├── cronJobs             # Manages reserved rooms, checkout rooms.
 │   ├── server.js            # Main server file
 │-- README.md                # Documentation
 ```
@@ -91,7 +91,7 @@ npm start
    - Contact form available for inquiries.
 
 5. **Automated Cron Jobs:**
-   - Schedules periodic to release reserved rooms and booking expiration checks.
+   - Schedules periodic Cron Jobs to release reserved rooms and booking expiration checks.
 
 ## 🌐 API Endpoints
 
@@ -146,25 +146,24 @@ npm start
 - React Toastify (Notifications)
 - Bootstrap Icons (UI Enhancements)
 
+
 ## 🤝 Contributing
 
-Contributions are welcome! To contribute:
-1. Fork the repository.
-2. Create a feature branch.
-3. Commit your changes.
-4. Open a pull request.
+Contributions are welcome! If you'd like to contribute, please fork the repository and submit a pull request. For major changes, open an issue to discuss your ideas first.
 
-## 📬 Contact
+## Contact
 
-For any inquiries, feel free to reach out:
+If you have any questions or feedback, feel free to reach out:
+
 - **GitHub**: [balajis183](https://github.com/balajis183)
 - **Email**: sbalaji2000s@gmail.com
 
 ---
 
-Thank you for exploring **StayHub**! 😊
 
+For more project visit github profile.
 ```bash
 https://github.com/balajis183
 ```
+Thank you for exploring **StayHub**! 😊
 
