@@ -155,41 +155,74 @@ npm start
 
 ## Screenshoots for reference!
 
+
 ![image](https://github.com/user-attachments/assets/d4bc919c-879f-4ac8-84a6-31b663a80f52)
+
+
 
 ![image](https://github.com/user-attachments/assets/92da81a4-25ab-4954-80bf-78b6d4d27ebb)
 
-![image](https://github.com/user-attachments/assets/0157cc40-d10a-4eea-9c22-2fc6f6aa1dc2)
+
 
 ![image](https://github.com/user-attachments/assets/9c5cf310-3171-446a-854e-f17cc368aeea)
 
+
+
 ![image](https://github.com/user-attachments/assets/89cde834-7dec-44de-a122-1fa9f31d71f8)
+
+
 
 ![image](https://github.com/user-attachments/assets/b80153b0-78db-4595-aa84-875c7c38a502)
 
+
+
 ![image](https://github.com/user-attachments/assets/ffb28171-e9f6-4925-af9b-68de654692ff)
+
+
 
 ![image](https://github.com/user-attachments/assets/290c9fd4-123e-4c05-a0d7-ebaba2308bcb)
 
+
+
 ![image](https://github.com/user-attachments/assets/16aafdcc-0767-489a-83cc-869b351e6514)
+
+
 
 ![image](https://github.com/user-attachments/assets/562f0cc8-7cbb-4c15-9544-20f23b429f37)
 
+
+
 ![image](https://github.com/user-attachments/assets/9b617619-8b00-4a4a-949f-2cd253ed833e)
+
+
 
 ![image](https://github.com/user-attachments/assets/0ca8eb48-599e-4289-a494-58064fc8f05a)
 
+
+
 ![image](https://github.com/user-attachments/assets/71509939-8ecc-4044-a63c-cc83d5e8d316)
+
+
 
 ![image](https://github.com/user-attachments/assets/bd3649a7-b8e3-4e06-8fe4-3fd0495bbb8e)
 
+
+
 ![image](https://github.com/user-attachments/assets/ec595d57-313b-4c30-9279-fac40cf01752)
+
+
 
 ![image](https://github.com/user-attachments/assets/043a9227-ff9b-42e3-956d-fea94ff8c420)
 
+
+
 ![image](https://github.com/user-attachments/assets/514bb2c9-6527-4f29-975a-9ec416890cdb)
 
+
+
 ![image](https://github.com/user-attachments/assets/46c6d37b-2f58-4a08-8ea0-7a93322a7bb1)
+
+
 
 ---
 
