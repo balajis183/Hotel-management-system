@@ -4,9 +4,9 @@ StayHub is a **role-based hotel management system** that enables customers to se
 
 ## 🚀 Deployment
 
-StayHub is deployed on an AWS EC2 instance with an **Elastic IP:**
+StayHub is deployed on an Render
 
-🔗 **Live API Base URL**: [`http://13.202.204.246/`](http://13.202.204.246/)
+🔗 **Live Render Deployed link **: [`https://stayhub-hotel-management-system.onrender.com`](https://stayhub-hotel-management-system.onrender.com)
 
 ## 📌 Features
 
