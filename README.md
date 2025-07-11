@@ -6,7 +6,7 @@ StayHub is a **role-based hotel management system** that enables customers to se
 
 StayHub is deployed on an Render
 
-🔗 **Live Render Deployed link **: [`https://stayhub-hotel-management-system.onrender.com`](https://stayhub-hotel-management-system.onrender.com)
+🔗 **Live Render Deployed link**: [`https://stayhub-hotel-management-system.onrender.com`](https://stayhub-hotel-management-system.onrender.com)
 
 ## 📌 Features
 
