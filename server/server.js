@@ -68,6 +68,11 @@ app.use("/bookings", bookingRoutes);
 app.use("/feedback", feedbackRoutes);
 app.use("/contact", contactRoutes);
 
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+
 // const PORT = 80;
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
